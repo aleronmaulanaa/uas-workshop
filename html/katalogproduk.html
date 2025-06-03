@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buku Terlaris - BooKu.id</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/katalogproduk.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <div class="logo-g">B</div>
+                    <div class="logo-text">BooKu.id</div>
+                </a>
+                
+                <div class="category-dropdown">
+                    <button class="category-btn">
+                        Kategori <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                
+                <div class="search-bar">
+                    <input type="text" placeholder="Cari Produk, Judul Buku, atau Penulis">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                
+                <a href="#" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+                
+                <div class="auth-buttons">
+                    <button class="btn btn-outline">Masuk</button>
+                    <button class="btn btn-primary">Daftar</button>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <div class="container">
+        <div class="main-content">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="filter-section">
+                    <h3 class="filter-title">Filter</h3>
+                    
+                    <div class="filter-group">
+                        <div class="filter-group-title">
+                            Kategori <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="filter-options">
+                            <div class="filter-option">
+                                <input type="checkbox" id="book">
+                                <label for="book">Buku</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="ebook">
+                                <label for="ebook">Ebook</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <div class="filter-group-title">
+                            Harga <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="price-inputs">
+                            <div class="price-input">
+                                <span>Rp</span>
+                                <input type="text" placeholder="Min">
+                            </div>
+                            <div class="price-input">
+                                <span>Rp</span>
+                                <input type="text" placeholder="Max">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <div class="filter-group-title">
+                            Stok <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="stock-filter">
+                            <label class="toggle">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                            <span>Hanya yang tersedia</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Products -->
+            <div class="products">
+                <div class="products-header">
+                    <h2 class="products-title">Buku Terlaris</h2>
+                </div>
+                
+                <div class="products-grid">
+                    <!-- Product 1 -->
+                    <!-- <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://image.gramedia.net/rs:fit:256:0/plain/https://cdn.gramedia.com/uploads/products/95ob5m98ur.jpg" alt="Seporsi Mie Ayam Sebelum Mati">
+                            <div class="wishlist-btn">
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Brian Khrisna</div>
+                            <h3 class="product-title">Seporsi Mie Ayam Sebelum Mati</h3>
+                            <p class="product-author">Buku Motivasi</p>
+                            <div class="product-price">Rp79.050</div>
+                        </div>
+                    </div> -->
+                    <!-- Replace the existing Product 1 card code -->
+<a href="detailproduk.html" class="product-link">
+    <div class="product-card">
+        <div class="product-image">
+            <img src="https://image.gramedia.net/rs:fit:256:0/plain/https://cdn.gramedia.com/uploads/products/95ob5m98ur.jpg" alt="Seporsi Mie Ayam Sebelum Mati">
+            <div class="wishlist-btn">
+                <i class="far fa-heart"></i>
+            </div>
+        </div>
+        <div class="product-info">
+            <div class="product-category">Brian Khrisna</div>
+            <h3 class="product-title">Seporsi Mie Ayam Sebelum Mati</h3>
+            <p class="product-author">Buku Motivasi</p>
+            <div class="product-price">Rp79.050</div>
+        </div>
+    </div>
+</a>
+                    
+                    <!-- Product 2 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://image.gramedia.net/rs:fit:256:0/plain/https://cdn.gramedia.com/uploads/products/-ns-aa-n-x.jpg" alt="Seorang Wanita yang Ingin Menjadi Pohon">
+                            <div class="wishlist-btn">
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">dr. Andreas Kurniawan, Sp...</div>
+                            <h3 class="product-title">Seorang Wanita yang Ingin Menjadi Pohon...</h3>
+                            <p class="product-author">Sr. Andrea Hirata</p>
+                            <div class="product-price">Rp82.450</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 3 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://image.gramedia.net/rs:fit:256:0/plain/https://cdn.gramedia.com/uploads/items/9786024246945_Laut-Bercerita.png" alt="Laut Bercerita">
+                            <div class="wishlist-btn">
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Leila S. Chudori</div>
+                            <h3 class="product-title">Laut Bercerita</h3>
+                            <p class="product-author">Leila S. Chudori</p>
+                            <div class="product-price">Rp81.650</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 4 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://image.gramedia.net/rs:fit:256:0/plain/https://cdn.gramedia.com/uploads/picture_meta/2024/1/20/qvjtc65vbzmexfegzrgs7u.jpg" alt="The Psychology of Money Edisi Revisi">
+                            <div class="wishlist-btn">
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Morgan Housel</div>
+                            <h3 class="product-title">The Psychology of Money Edisi Revisi</h3>
+                            <p class="product-author">James Clear</p>
+                            <div class="product-price">Rp76.500.800</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 5 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://image.gramedia.net/rs:fit:256:0/plain/https://cdn.gramedia.com/uploads/items/9786020633176_.Atomic_Habit.jpg" alt="Atomic Habits: Perubahan Kecil">
+                            <div class="wishlist-btn">
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">James Clear</div>
+                            <h3 class="product-title">Atomic Habits: Perubahan Kecil yang...</h3>
+                            <p class="product-author">Morgan Housel</p>
+                            <div class="product-price">Rp91.800</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 6 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://image.gramedia.net/rs:fit:256:0/plain/https://cdn.gramedia.com/uploads/picture_meta/2023/8/6/bxqnqtge7fycg3qkbshg5k.png" alt="Namaku Alam">
+                            <div class="wishlist-btn">
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Leila S. Chudori</div>
+                            <h3 class="product-title">Namaku Alam</h3>
+                            <p class="product-author">Mahfud MD</p>
+                            <div class="product-price">Rp85.200</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 7 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://image.gramedia.net/rs:fit:256:0/plain/https://cdn.gramedia.com/uploads/items/9786022912828_animal_farm_new.jpg" alt="Animal Farm-New">
+                            <div class="wishlist-btn">
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">George Orwell</div>
+                            <h3 class="product-title">Animal Farm-New</h3>
+                            <p class="product-author">Leila S. Chudori</p>
+                            <div class="product-price">Rp44.100</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 8 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://image.gramedia.net/rs:fit:256:0/plain/https://cdn.gramedia.com/uploads/picture_meta/2024/1/8/m5b3gwzj4fpaxwq7lk4b9s.jpg" alt="Madilog Tan Malaka: Materialisme">
+                            <div class="wishlist-btn">
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Tim Narasi</div>
+                            <h3 class="product-title">Madilog Tan Malaka: Materialisme Dialektik...</h3>
+                            <p class="product-author">Sr. Andrea Hirata</p>
+                            <div class="product-price">Rp126.000</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 9 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://image.gramedia.net/rs:fit:256:0/plain/https://cdn.gramedia.com/uploads/picture_meta/2023/12/1/fj23u35u6cqqpb2tpz5x34.jpg" alt="Seorang Pria yang Melalui Duka">
+                            <div class="wishlist-btn">
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">dr. Andreas Kurniawan, Sp...</div>
+                            <h3 class="product-title">Seorang Pria yang Melalui Duka dengan...h3>
+                            <p class="product-author">George Orwell</p>
+                            <div class="product-price">Rp80.750</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 10 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://image.gramedia.net/rs:fit:256:0/plain/https://cdn.gramedia.com/uploads/items/9786024813659_The_Things_You_Can_See_Only_When_You_Slow_Down-1.jpg" alt="The Things You Can See">
+                            <div class="wishlist-btn">
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Haemin Sunim</div>
+                            <h3 class="product-title">The Things You Can See Only When You...</h3>
+                            <p class="product-author">Haemin Sunim</p>
+                            <div class="product-price">Rp88.750</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 11 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://image.gramedia.net/rs:fit:256:0/plain/https://cdn.gramedia.com/uploads/picture_meta/2023/11/27/kjf6cgigkomf6sy9o5qauu.jpg" alt="Filosofi Teras">
+                            <div class="wishlist-btn">
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">HENRY MANAMPIRING</div>
+                            <h3 class="product-title">Filosofi Teras (New Cover)</h3>
+                            <p class="product-author">Henry Manampiring</p>
+                            <div class="product-price">Rp97.200</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 12 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://image.gramedia.net/rs:fit:256:0/plain/https://cdn.gramedia.com/uploads/picture_meta/2023/12/20/xoid3bznddxudnurccgqxi.jpg" alt="Pulang (2023)">
+                            <div class="wishlist-btn">
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Leila S. Chudori</div>
+                            <h3 class="product-title">Pulang (2023)</h3>
+                            <p class="product-author">Leila S. Chudori</p>
+                            <div class="product-price">Rp92.300</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 13 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://image.gramedia.net/rs:fit:256:0/plain/https://cdn.gramedia.com/uploads/products/hx1az06kc1.jpg" alt="Kagurabachi 01">
+                            <div class="wishlist-btn">
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Takeru Hokazono</div>
+                            <h3 class="product-title">Kagurabachi 01</h3>
+                            <p class="product-author">Takeru Hokazono</p>
+                            <div class="product-price">Rp33.750</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 14 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://image.gramedia.net/rs:fit:256:0/plain/https://cdn.gramedia.com/uploads/items/9786020649320_the_midnight_library_cov.jpg" alt="Perempuan Tengah Malam">
+                            <div class="wishlist-btn">
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Matt Haig</div>
+                            <h3 class="product-title">Perpustakaan Tengah Malam (The Midnight...</h3>
+                            <p class="product-author">Risa Saraswati</p>
+                            <div class="product-price">Rp78.750</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 15 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://image.gramedia.net/rs:fit:256:0/plain/https://cdn.gramedia.com/uploads/product-metas/td-nx--iss.jpg" alt="From Zero to Survive">
+                            <div class="wishlist-btn">
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Theo Derick</div>
+                            <h3 class="product-title">From Zero to Survive: Seni Menang dalam...</h3>
+                            <p class="product-author">John M. Echols</p>
+                            <div class="product-price">Rp110.500</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="load-more">
+                    <button class="load-more-btn">Muat Lebih Banyak</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <div class="logo-g">B</div>
+                    <div class="logo-text">BooKu.id</div>
+                </div>
+                <div class="footer-tagline">
+                    Toko buku online terbesar, terlengkap dan terpercaya di Indonesia
+                </div>
+            </div>
+            
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Produk BooKu</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">BooKu Affiliate</a></li>
+                        <li><a href="#">Mitra BooKu</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Informasi Berbelanja</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Berbelanja</a></li>
+                        <li><a href="#">Pembayaran</a></li>
+                        <li><a href="#">Pengiriman</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Tentang BooKu</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#">Toko Kami</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Lainnya</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Kebijakan Privasi</a></li>
+                        <li><a href="#">Hubungi Kami</a></li>
+                        <li><a href="#">Kerja Sama</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Aplikasi Seluler Kami</h3>
+                    <p>Download aplikasi BooKu.id yang tersedia di seluruh perangkat iOS dan Android</p>
+                    <div class="app-download">
+                        <a href="#" class="app-btn">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/App_Store_%28iOS%29.svg/2048px-App_Store_%28iOS%29.svg.png" alt="App Store">
+                            <span>App Store</span>
+                        </a>
+                        <a href="#" class="app-btn">
+                            <img src="https://logos-world.net/wp-content/uploads/2020/11/Google-Play-Emblem.png" alt="Google Play">
+                            <span>Google Play</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    © 2025 PT BooKu Asri Media
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Wishlist functionality
+        document.querySelectorAll('.wishlist-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const icon = this.querySelector('i');
+                
+                if (icon.classList.contains('far')) {
+                    icon.classList.remove('far');
+                    icon.classList.add('fas');
+                    icon.style.color = '#dc3545';
+                    
+                    // Animation
+                    this.animate([
+                        { transform: 'scale(1)' },
+                        { transform: 'scale(1.3)' },
+                        { transform: 'scale(1)' }
+                    ], {
+                        duration: 500,
+                        easing: 'ease'
+                    });
+                } else {
+                    icon.classList.remove('fas');
+                    icon.classList.add('far');
+                    icon.style.color = '#adb5bd';
+                }
+            });
+        });
+        
+        // Filter group toggle
+        document.querySelectorAll('.filter-group-title').forEach(title => {
+            title.addEventListener('click', function() {
+                this.classList.toggle('active');
+                const options = this.nextElementSibling;
+                
+                if (options.style.maxHeight) {
+                    options.style.maxHeight = null;
+                } else {
+                    options.style.maxHeight = options.scrollHeight + 'px';
+                }
+            });
+        });
+        
+        // Filter tag removal
+        document.querySelectorAll('.filter-tag i').forEach(icon => {
+            icon.addEventListener('click', function() {
+                this.parentElement.remove();
+            });
+        });
+        
+        // Load more functionality
+        document.querySelector('.load-more-btn').addEventListener('click', function() {
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+            
+            // Simulate loading
+            setTimeout(() => {
+                this.innerHTML = 'Muat Lebih Banyak';
+                alert('Semua produk telah dimuat!');
+            }, 1500);
+        });
+        
+        // Product hover effect
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.zIndex = '10';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.zIndex = '1';
+            });
+        });
+        
+        // Scroll animations
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.product-card');
+            
+            elements.forEach((element, index) => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.style.animationDelay = `${index * 0.1}s`;
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+        
+        // Category dropdown
+        document.querySelector('.category-btn').addEventListener('click', function() {
+            alert('Kategori dropdown akan muncul di sini');
+        });
+        
+        // Search functionality
+        document.querySelector('.search-bar button').addEventListener('click', function() {
+            const searchInput = document.querySelector('.search-bar input');
+            if (searchInput.value.trim() !== '') {
+                alert(`Mencari: ${searchInput.value}`);
+            }
+        });
+        
+        // Enter key for search
+        document.querySelector('.search-bar input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.querySelector('.search-bar button').click();
+            }
+        });
+    </script>
+</body>
+</html>

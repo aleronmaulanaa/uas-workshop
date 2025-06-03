@@ -1,0 +1,2147 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BooKu.id - Toko Buku Online Terbesar</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Reset and Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        color: #333;
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
+        line-height: 1.6;
+            opacity: 1;
+    transition: opacity 0.3s ease;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.3s ease;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+
+      /* Smooth scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Loading animation */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-10px);
+        }
+        60% {
+          transform: translateY(-5px);
+        }
+      }
+
+      @keyframes shimmer {
+        0% {
+          background-position: -200px 0;
+        }
+        100% {
+          background-position: calc(200px + 100%) 0;
+        }
+      }
+
+      .top-header {
+        display: flex;
+        justify-content: flex-end;
+        padding: 8px 0;
+        font-size: 12px;
+        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        color: white;
+      }
+
+      .top-header a {
+        margin-left: 20px;
+        color: rgba(255, 255, 255, 0.9);
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .top-header a:hover {
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      .top-header a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 50%;
+        background-color: white;
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+      }
+
+      .top-header a:hover::after {
+        width: 100%;
+      }
+
+      .main-header {
+        display: flex;
+        align-items: center;
+        padding: 15px 0;
+        animation: slideInLeft 0.8s ease;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        margin-right: 30px;
+        transition: all 0.3s ease;
+      }
+
+      .logo:hover {
+        transform: scale(1.05);
+      }
+
+      .logo-g {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        font-weight: bold;
+        margin-right: 10px;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      }
+
+      .logo-text {
+        font-size: 20px;
+        font-weight: 700;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .categories {
+        padding: 8px 0;
+        border-top: 1px solid #eee;
+      }
+
+      .categories ul {
+        display: flex;
+        list-style: none;
+      }
+
+      .categories li {
+        margin-right: 30px;
+      }
+
+      .categories a {
+        font-weight: 500;
+        color: #555;
+        padding: 8px 0;
+        position: relative;
+        transition: all 0.3s ease;
+      }
+
+      .categories a:hover {
+        color: #667eea;
+        transform: translateY(-2px);
+      }
+
+      .categories a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 3px;
+        bottom: 0;
+        left: 0;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        transition: width 0.3s ease;
+      }
+
+      .categories a:hover::after {
+        width: 100%;
+      }
+
+      .search-bar {
+        flex: 1;
+        display: flex;
+        margin: 0 30px;
+        position: relative;
+      }
+
+      .search-bar input {
+        flex: 1;
+        padding: 12px 20px;
+        border: 2px solid #e1e5e9;
+        border-radius: 25px;
+        outline: none;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        background: white;
+      }
+
+      .search-bar input:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .search-bar button {
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 8px 15px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        border-radius: 20px;
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .search-bar button:hover {
+        transform: translateY(-50%) scale(1.05);
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .cart-icon {
+        font-size: 22px;
+        color: #555;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .cart-icon:hover {
+        color: #667eea;
+        transform: scale(1.1) rotate(10deg);
+      }
+
+      .cart-icon::after {
+        content: "3";
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background: #e74c3c;
+        color: white;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        font-size: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: pulse 2s infinite;
+      }
+
+      .login-btn,
+      .signup-btn {
+        padding: 10px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .login-btn {
+        background: white;
+        border: 2px solid #667eea;
+        color: #667eea;
+      }
+
+      .login-btn:hover {
+        background: #667eea;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      }
+
+      .signup-btn {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        color: white;
+      }
+
+      .signup-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+      }
+
+      .signup-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .signup-btn:hover::before {
+        left: 100%;
+      }
+
+      /* Hero Carousel */
+      .hero-carousel {
+        position: relative;
+        margin: 30px 0;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        animation: fadeInUp 1s ease;
+      }
+
+      .carousel-item {
+        position: relative;
+        height: 350px;
+        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        color: white;
+        display: flex;
+        overflow: hidden;
+      }
+
+      .carousel-content {
+        flex: 1;
+        padding: 40px;
+        z-index: 2;
+        animation: slideInLeft 1s ease 0.3s both;
+      }
+
+      .carousel-content h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .carousel-image {
+        flex: 1;
+        background-position: center;
+        background-size: cover;
+        position: relative;
+        animation: slideInRight 1s ease 0.5s both;
+      }
+
+      .carousel-image::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          45deg,
+          rgba(102, 126, 234, 0.1),
+          rgba(118, 75, 162, 0.1)
+        );
+      }
+
+      .special-offer {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+        color: white;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 12px;
+        animation: bounce 2s infinite;
+        box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+      }
+
+      .price-tag {
+        font-size: 16px;
+        text-decoration: line-through;
+        margin-bottom: 8px;
+        opacity: 0.8;
+      }
+
+      .discount-price {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 15px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .promo-period {
+        font-size: 16px;
+        margin-bottom: 25px;
+        opacity: 0.9;
+      }
+
+      .cta-button {
+        display: inline-block;
+        padding: 12px 25px;
+        background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+        color: white;
+        border-radius: 25px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 25px rgba(231, 76, 60, 0.6);
+      }
+
+      .carousel-nav {
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .carousel-dot {
+        width: 12px;
+        height: 12px;
+        background-color: rgba(255, 255, 255, 0.4);
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .carousel-dot:hover {
+        background-color: rgba(255, 255, 255, 0.7);
+        transform: scale(1.2);
+      }
+
+      .carousel-dot.active {
+        background-color: white;
+        transform: scale(1.3);
+      }
+
+      /* Category Icons */
+      .category-icons {
+        display: flex;
+        justify-content: space-between;
+        margin: 40px 0;
+        text-align: center;
+        animation: fadeInUp 1s ease 0.5s both;
+      }
+
+      .category-icon {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 90px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .category-icon:hover {
+        transform: translateY(-10px);
+      }
+
+      .icon-circle {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 12px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .category-icon:hover .icon-circle {
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .icon-circle img {
+        width: 35px;
+        height: 35px;
+        transition: all 0.3s ease;
+      }
+
+      .category-icon:hover .icon-circle img {
+        transform: scale(1.1);
+      }
+
+      .category-name {
+        font-size: 13px;
+        font-weight: 500;
+        color: #555;
+        transition: all 0.3s ease;
+      }
+
+      .category-icon:hover .category-name {
+        color: #667eea;
+        font-weight: 600;
+      }
+
+      /* Section Styles */
+      .section {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 30px;
+        margin-bottom: 40px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        animation: fadeInUp 0.8s ease;
+      }
+
+      .section:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid #f8f9fa;
+      }
+
+      .section-title {
+        font-size: 24px;
+        font-weight: 700;
+        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* .view-all {
+        font-size: 14px;
+        color: #667eea;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .view-all:hover {
+        color: #764ba2;
+        transform: translateX(5px);
+      }
+
+      .view-all::after {
+        content: "→";
+        margin-left: 5px;
+        transition: all 0.3s ease;
+      }
+
+      .view-all:hover::after {
+        transform: translateX(3px);
+      } */
+
+.view-all {
+        font-size: 14px;
+        color: #667eea;
+        font-weight: 600;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.view-all:hover {
+    color: #4a6bce;
+    transform: translateX(5px);
+}
+
+.view-all::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #4a6bce;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.view-all:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+      /* Flash Sale */
+      .flash-sale-header {
+        background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);
+        padding: 15px 25px;
+        border-radius: 15px 15px 0 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .flash-sale-header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        animation: shimmer 2s infinite;
+      }
+
+      .flash-sale-title {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .flash-sale-title h2 {
+        color: #e91e63;
+        font-size: 20px;
+        font-weight: 700;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+      }
+
+      .timer {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+      }
+
+      .timer-box {
+        background: linear-gradient(135deg, #e91e63 0%, #ad1457 100%);
+        color: white;
+        padding: 5px 8px;
+        border-radius: 5px;
+        font-weight: 700;
+        font-size: 14px;
+        box-shadow: 0 2px 8px rgba(233, 30, 99, 0.3);
+        animation: pulse 1s infinite;
+      }
+
+      .timer span {
+        color: #e91e63;
+        font-weight: 700;
+        margin: 0 2px;
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+      }
+
+      .product-card {
+        position: relative;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        border-radius: 15px;
+        overflow: hidden;
+        background: white;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .product-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      }
+
+      .product-image {
+        height: 220px;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        margin-bottom: 15px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.3s ease;
+      }
+
+      .product-card:hover .product-image img {
+        transform: scale(1.1);
+      }
+
+      .product-image::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          45deg,
+          rgba(102, 126, 234, 0.1),
+          rgba(118, 75, 162, 0.1)
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .product-card:hover .product-image::after {
+        opacity: 1;
+      }
+
+      .product-title {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        padding: 0 15px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        color: #2c3e50;
+        line-height: 1.4;
+      }
+
+      .product-author {
+        font-size: 12px;
+        color: #6c757d;
+        margin-bottom: 8px;
+        padding: 0 15px;
+        font-weight: 500;
+      }
+
+      .product-price {
+        font-weight: 700;
+        color: #e91e63;
+        font-size: 16px;
+        padding: 0 15px 15px;
+      }
+
+      .wishlist-icon {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: rgba(255, 255, 255, 0.9);
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .wishlist-icon:hover {
+        background: #e91e63;
+        color: white;
+        transform: scale(1.1);
+      }
+
+      /* Official Store */
+      .official-stores {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 20px;
+        text-align: center;
+      }
+
+      .store-item {
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .store-item:hover {
+        transform: translateY(-5px);
+      }
+
+      .store-logo {
+        padding: 20px;
+        border: 2px solid #f1f3f4;
+        border-radius: 15px;
+        height: 90px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        background: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .store-item:hover .store-logo {
+        border-color: #667eea;
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+        transform: scale(1.05);
+      }
+
+      .store-logo img {
+        max-width: 100%;
+        max-height: 50px;
+        transition: all 0.3s ease;
+      }
+
+      .store-item:hover .store-logo img {
+        transform: scale(1.1);
+      }
+
+      .store-name {
+        font-size: 12px;
+        margin-top: 10px;
+        font-weight: 500;
+        color: #555;
+        transition: all 0.3s ease;
+      }
+
+      .store-item:hover .store-name {
+        color: #667eea;
+        font-weight: 600;
+      }
+
+      /* Banner */
+      .banner {
+        height: 180px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 20px;
+        margin-bottom: 40px;
+        display: flex;
+        overflow: hidden;
+        color: white;
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        position: relative;
+        animation: fadeInUp 0.8s ease;
+      }
+
+      .banner::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        pointer-events: none;
+      }
+
+      .banner-content {
+        flex: 2;
+        padding: 30px;
+        z-index: 2;
+        animation: slideInLeft 1s ease 0.3s both;
+      }
+
+      .banner-title {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .banner-description {
+        margin-bottom: 20px;
+        font-size: 16px;
+        opacity: 0.9;
+      }
+
+      .banner-cta {
+        display: inline-block;
+        padding: 12px 25px;
+        background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+        color: white;
+        border-radius: 25px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(255, 152, 0, 0.4);
+      }
+
+      .banner-cta:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 25px rgba(255, 152, 0, 0.6);
+      }
+
+      .banner-image {
+        flex: 1;
+        background-position: center;
+        background-size: cover;
+        position: relative;
+        animation: slideInRight 1s ease 0.5s both;
+      }
+
+      /* Social Media Section */
+      .social-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-radius: 20px;
+        padding: 30px;
+        margin-bottom: 40px;
+        animation: fadeInUp 0.8s ease;
+      }
+
+      .social-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 25px;
+      }
+
+      .social-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 20px;
+        backdrop-filter: blur(10px);
+      }
+
+      .social-avatar span {
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .social-info h3 {
+        font-weight: 700;
+        font-size: 18px;
+        margin-bottom: 5px;
+      }
+
+      .social-stats {
+        display: flex;
+        font-size: 14px;
+        opacity: 0.9;
+        gap: 20px;
+      }
+
+      .follow-btn {
+        margin-left: auto;
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        padding: 10px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+      }
+
+      .follow-btn:hover {
+        background: white;
+        color: #667eea;
+        transform: translateY(-2px);
+      }
+
+      .social-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 15px;
+        margin-bottom: 25px;
+      }
+
+      .social-post {
+        height: 150px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        backdrop-filter: blur(10px);
+      }
+
+      .social-post:hover {
+        transform: scale(1.05);
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .social-cta {
+        text-align: center;
+      }
+
+      .tiktok-btn {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 25px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+      }
+
+      .tiktok-btn:hover {
+        background: white;
+        color: #667eea;
+        transform: translateY(-2px);
+      }
+
+      /* Blog Section */
+      .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+      }
+
+      .blog-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+      }
+
+/* Add after existing .blog-card styles */
+.blog-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(74, 107, 206, 0.15);
+}
+
+.blog-card:hover .blog-image img {
+    transform: scale(1.1);
+}
+
+/* .blog-card:hover .blog-title {
+    color: #4a6bce;
+} */
+
+.blog-image {
+    overflow: hidden;
+    border-radius: 8px 8px 0 0;
+}
+
+.blog-image img {
+    transition: transform 0.5s ease;
+}
+
+.blog-content {
+    padding: 20px;
+    background: white;
+    border-radius: 0 0 8px 8px;
+}
+
+/* Add page transition animation */
+@keyframes pageTransition {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.blog-card {
+    animation: pageTransition 0.5s ease;
+}
+
+      .blog-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      }
+
+      .blog-image {
+        height: 200px;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .blog-image::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          45deg,
+          rgba(102, 126, 234, 0.1),
+          rgba(118, 75, 162, 0.1)
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .blog-card:hover .blog-image::after {
+        opacity: 1;
+      }
+
+      .blog-content {
+        padding: 20px;
+      }
+
+      .blog-title {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 12px;
+        color: #2c3e50;
+        line-height: 1.4;
+      }
+
+      .blog-excerpt {
+        font-size: 14px;
+        color: #6c757d;
+        margin-bottom: 15px;
+        line-height: 1.5;
+      }
+
+      .blog-date {
+        font-size: 12px;
+        color: #adb5bd;
+        font-weight: 500;
+      }
+
+      /* Footer */
+      footer {
+        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        color: white;
+        padding: 50px 0 30px;
+        margin-top: 60px;
+        position: relative;
+      }
+
+      footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="footerGrain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.05"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23footerGrain)"/></svg>');
+        pointer-events: none;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .footer-column h3 {
+        font-size: 18px;
+        margin-bottom: 20px;
+        font-weight: 600;
+        color: #ecf0f1;
+      }
+
+      .footer-links {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 12px;
+      }
+
+      .footer-links a {
+        color: #bdc3c7;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .footer-links a:hover {
+        color: white;
+        transform: translateX(5px);
+      }
+
+      .footer-links a::before {
+        content: "→";
+        position: absolute;
+        left: -20px;
+        opacity: 0;
+        transition: all 0.3s ease;
+      }
+
+      .footer-links a:hover::before {
+        opacity: 1;
+        left: -15px;
+      }
+
+      .app-download {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .app-button {
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        padding: 8px 15px;
+        display: flex;
+        align-items: center;
+        transition: all 0.3s ease;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+      }
+
+      .app-button:hover {
+        border-color: white;
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+      }
+
+      .app-button img {
+        height: 20px;
+        margin-right: 8px;
+      }
+
+      .footer-brand {
+        text-align: center;
+        margin-top: 40px;
+        padding-top: 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+        z-index: 2;
+      }
+
+      .footer-logo {
+        margin-bottom: 20px;
+      }
+
+      .footer-logo .logo-g {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        margin: 0 auto 10px;
+      }
+
+      .footer-description {
+        font-size: 14px;
+        color: #bdc3c7;
+        margin-bottom: 25px;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin-bottom: 25px;
+      }
+
+      .social-icon {
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+      }
+
+      .social-icon:hover {
+        background: white;
+        color: #2c3e50;
+        transform: translateY(-3px) scale(1.1);
+      }
+
+      .copyright {
+        font-size: 14px;
+        color: #95a5a6;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .main-header {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .search-bar {
+          margin: 0;
+          order: 3;
+          width: 100%;
+        }
+
+        .header-actions {
+          order: 2;
+        }
+
+        .categories {
+          order: 1;
+        }
+
+        .carousel-content h1 {
+          font-size: 1.8rem;
+        }
+
+        .discount-price {
+          font-size: 2rem;
+        }
+
+        .category-icons {
+          flex-wrap: wrap;
+          gap: 20px;
+        }
+
+        .products-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .official-stores {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        .blog-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .social-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      /* Scroll animations */
+      .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+
+      .animate-on-scroll.animated {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Loading skeleton */
+      .skeleton {
+        background: linear-gradient(
+          90deg,
+          #f0f0f0 25%,
+          #e0e0e0 50%,
+          #f0f0f0 75%
+        );
+        background-size: 200% 100%;
+        animation: loading 1.5s infinite;
+      }
+
+      @keyframes loading {
+        0% {
+          background-position: 200% 0;
+        }
+        100% {
+          background-position: -200% 0;
+        }
+      }
+    </style>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  </head>
+  <body>
+    <!-- Header -->
+    <!-- Metode jQuery -->
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+          <div id="header-container"></div>
+
+          <script>
+              $(document).ready(function(){
+                  $("#header-container").load("header.html");
+              });
+          </script> -->
+    <!-- Metode Fetch -->
+    <div id="header-container"></div>
+    <script>
+      fetch("header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header-container").innerHTML = data;
+        })
+        .catch((error) => {
+          console.error("Error loading header:", error);
+        });
+    </script>
+
+    <!-- Rest of the content -->
+
+    <!-- Main Content -->
+    <main class="container">
+      <!-- Hero Carousel -->
+      <div class="hero-carousel">
+        <div class="carousel-item">
+          <div class="carousel-content">
+            <h1>KAPAN PUNYA RUMAH?</h1>
+            <p class="price-tag">Rp175.000</p>
+            <p class="discount-price">Rp124.000</p>
+            <p class="promo-period">25 Mei - 5 Juni 2025</p>
+            <a href="#" class="cta-button">Beli Sekarang</a>
+          </div>
+          <div
+            class="carousel-image"
+            style="
+              background-image: url('https://image.gramedia.net/rs:fill:800:400/el:true/plain/https://cdn.gramedia.com/uploads/banner/ves-l-3x5c.jpg');
+            "
+          ></div>
+          <div class="special-offer">Special Offer</div>
+        </div>
+        <div class="carousel-nav">
+          <div class="carousel-dot active"></div>
+          <div class="carousel-dot"></div>
+          <div class="carousel-dot"></div>
+        </div>
+      </div>
+
+      <!-- Category Icons -->
+      <div class="category-icons">
+        <div class="category-icon">
+          <div
+            class="icon-circle"
+            style="
+              background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            "
+          >
+            <img
+              src="https://image.gramedia.net/rs:fit:0:0/plain/https://cdn.gramedia.com/uploads/highlighted_menu/Icon_category_Buku_Baru.png"
+              alt="Buku Baru"
+            />
+          </div>
+          <span class="category-name">Buku Baru</span>
+        </div>
+        <div class="category-icon">
+          <div
+            class="icon-circle"
+            style="
+              background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            "
+          >
+            <img
+              src="https://image.gramedia.net/rs:fit:0:0/plain/https://cdn.gramedia.com/uploads/highlighted_menu/5v3u902v50.png"
+              alt="Buku Tulis"
+            />
+          </div>
+          <span class="category-name">Buku Tulis</span>
+        </div>
+        <div class="category-icon">
+          <div
+            class="icon-circle"
+            style="
+              background: linear-gradient(135deg, #fff3e0 0%, #ffcc02 100%);
+            "
+          >
+            <img
+              src="https://image.gramedia.net/rs:fit:0:0/plain/https://cdn.gramedia.com/uploads/highlighted_menu/91c7804ss3.png"
+              alt="Tas"
+            />
+          </div>
+          <span class="category-name">Tas</span>
+        </div>
+        <div class="category-icon">
+          <div
+            class="icon-circle"
+            style="
+              background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+            "
+          >
+            <img
+              src="https://image.gramedia.net/rs:fit:0:0/plain/https://cdn.gramedia.com/uploads/highlighted_menu/Icon_category_ebook.png"
+              alt="E-book"
+            />
+          </div>
+          <span class="category-name">Digital Books (E-book)</span>
+        </div>
+        <div class="category-icon">
+          <div
+            class="icon-circle"
+            style="
+              background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            "
+          >
+            <img
+              src="https://image.gramedia.net/rs:fit:0:0/plain/https://cdn.gramedia.com/uploads/highlighted_menu/6a78z4tv49.png"
+              alt="Stationery"
+            />
+          </div>
+          <span class="category-name">Stationery</span>
+        </div>
+        <div class="category-icon">
+          <div
+            class="icon-circle"
+            style="
+              background: linear-gradient(135deg, #e8eaf6 0%, #c5cae9 100%);
+            "
+          >
+            <img src="https://image.gramedia.net/rs:fit:0:0/plain/https://cdn.gramedia.com/uploads/highlighted_menu/Icon_category_Buku_Import.png" alt="International Books" />
+          </div>
+          <span class="category-name">International Books</span>
+        </div>
+        <div class="category-icon">
+          <div
+            class="icon-circle"
+            style="
+              background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);
+            "
+          >
+            <img
+              src="https://image.gramedia.net/rs:fit:0:0/plain/https://cdn.gramedia.com/uploads/highlighted_menu/2xav34zzm-.png"
+              alt="Toys"
+            />
+          </div>
+          <span class="category-name">Toys</span>
+        </div>
+      </div>
+
+      <!-- Flash Sale Section -->
+      <div
+        class="section animate-on-scroll"
+        style="padding: 0; overflow: hidden"
+      >
+        <div class="flash-sale-header">
+          <div class="flash-sale-title">
+            <h2>Flash Sale</h2>
+            <div class="timer">
+              <div class="timer-box">01</div>
+              <span>:</span>
+              <div class="timer-box">24</div>
+              <span>:</span>
+              <div class="timer-box">37</div>
+            </div>
+          </div>
+          <a href="#" class="view-all">Lihat Semua</a>
+        </div>
+        <div style="padding: 30px">
+          <div class="products-grid">
+            <div class="product-card">
+              <div class="product-image">
+                <img
+                  src="https://image.gramedia.net/rs:fit:256:0/plain/https://cdn.gramedia.com/uploads/items/9786230019685_Demon_Slayer_04.jpg"
+                  alt="Book Cover"
+                />
+                <div class="wishlist-icon"><i class="far fa-heart"></i></div>
+              </div>
+              <h3 class="product-title">
+                Demon Slayer: Kimetsu no Yaiba Vol. 23
+              </h3>
+              <p class="product-author">Koyoharu Gotouge</p>
+              <p class="product-price">Rp78.000</p>
+            </div>
+            <div class="product-card">
+              <div class="product-image">
+                <img
+                  src="https://image.gramedia.net/rs:fit:256:0/plain/https://cdn.gramedia.com/uploads/picture_meta/2023/3/1/axl6izw8gjpwz3xqbtqvuk.jpg"
+                  alt="Book Cover"
+                />
+                <div class="wishlist-icon"><i class="far fa-heart"></i></div>
+              </div>
+              <h3 class="product-title">Jujutsu Kaisen Vol. 15</h3>
+              <p class="product-author">Gege Akutami</p>
+              <p class="product-price">Rp78.000</p>
+            </div>
+            <div class="product-card">
+              <div class="product-image">
+                <img
+                  src="https://image.gramedia.net/rs:fit:256:0/plain/https://cdn.gramedia.com/uploads/picture_meta/2023/8/25/khg28zgvm4hynb8cetadcd.jpg"
+                  alt="Book Cover"
+                />
+                <div class="wishlist-icon"><i class="far fa-heart"></i></div>
+              </div>
+              <h3 class="product-title">Atomic Habits</h3>
+              <p class="product-author">James Clear</p>
+              <p class="product-price">Rp95.000</p>
+            </div>
+            <div class="product-card">
+              <div class="product-image">
+                <img
+                  src="https://image.gramedia.net/rs:fit:256:0/plain/https://cdn.gramedia.com/uploads/picture_meta/2023/3/6/r8mu3dzqudpmrag87npx2n.jpg"
+                  alt="Book Cover"
+                />
+                <div class="wishlist-icon"><i class="far fa-heart"></i></div>
+              </div>
+              <h3 class="product-title">The Psychology of Money</h3>
+              <p class="product-author">Morgan Housel</p>
+              <p class="product-price">Rp89.000</p>
+            </div>
+            <div class="product-card">
+              <div class="product-image">
+                <img
+                  src="https://image.gramedia.net/rs:fit:256:0/plain/https://cdn.gramedia.com/uploads/products/sy-eav-eva.jpg"
+                  alt="Book Cover"
+                />
+                <div class="wishlist-icon"><i class="far fa-heart"></i></div>
+              </div>
+              <h3 class="product-title">Rich Dad Poor Dad</h3>
+              <p class="product-author">Robert T. Kiyosaki</p>
+              <p class="product-price">Rp85.000</p>
+            </div>
+            <div class="product-card">
+              <div class="product-image">
+                <img
+                  src="https://image.gramedia.net/rs:fit:256:0/plain/https://cdn.gramedia.com/uploads/products/3nb9xkla04.jpg"
+                  alt="Book Cover"
+                />
+                <div class="wishlist-icon"><i class="far fa-heart"></i></div>
+              </div>
+              <h3 class="product-title">Laut Bercerita</h3>
+              <p class="product-author">Leila S. Chudori</p>
+              <p class="product-price">Rp95.000</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Banner -->
+      <div class="banner animate-on-scroll">
+        <div class="banner-content">
+          <h2 class="banner-title">Kantongi Ribuan Buku dalam Sekali Bayar!</h2>
+          <p class="banner-description">
+            Baca e-books dalam 1 langganan di Mana Saja!
+          </p>
+          <a href="#" class="banner-cta">Cek Sekarang</a>
+        </div>
+        <div
+          class="banner-image"
+          style="background-image: url('https://png.pngtree.com/png-clipart/20250122/original/pngtree-playful-cartoon-books-illustration-with-open-pages-png-image_19983594.png')"
+        ></div>
+      </div>
+
+      <!-- Best Selling Books -->
+      <!-- <div class="section animate-on-scroll">
+        <div class="section-header">
+          <h2 class="section-title">Buku Terlaris</h2>
+          <a href="#" class="view-all">Lihat Semua</a>
+        </div> -->
+        <div class="section animate-on-scroll">
+    <div class="section-header">
+        <h2 class="section-title">Buku Terlaris</h2>
+        <a href="katalogproduk.html" class="view-all">Lihat Semua</a>
+    </div>
+        <div class="products-grid">
+          <!-- <div class="product-card">
+            <div class="product-image">
+              <img
+                src="https://image.gramedia.net/rs:fit:256:0/plain/https://cdn.gramedia.com/uploads/products/95ob5m98ur.jpg"
+                alt="Book Cover"
+              />
+              <div class="wishlist-icon"><i class="far fa-heart"></i></div>
+            </div>
+            <h3 class="product-title">Filosofi Teras</h3>
+            <p class="product-author">Henry Manampiring</p>
+            <p class="product-price">Rp98.000</p>
+          </div> -->
+          <a href="detailproduk.html" class="product-link">
+    <div class="product-card">
+        <div class="product-image">
+            <img src="https://image.gramedia.net/rs:fit:256:0/plain/https://cdn.gramedia.com/uploads/products/95ob5m98ur.jpg" alt="Book Cover" />
+            <div class="wishlist-icon"><i class="far fa-heart"></i></div>
+        </div>
+        <h3 class="product-title">Seporsi Mie Ayam Sebelum Mati</h3>
+        <p class="product-author">Brian Khrisna</p>
+        <p class="product-price">Rp79.050</p>
+    </div>
+</a>
+          <div class="product-card">
+            <div class="product-image">
+              <img
+                src="https://image.gramedia.net/rs:fit:256:0/plain/https://cdn.gramedia.com/uploads/product-metas/xobm-2onhc.jpg"
+                alt="Book Cover"
+              />
+              <div class="wishlist-icon"><i class="far fa-heart"></i></div>
+            </div>
+            <h3 class="product-title">Sebuah Seni untuk Bersikap Bodo Amat</h3>
+            <p class="product-author">Mark Manson</p>
+            <p class="product-price">Rp95.000</p>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img
+                src="https://image.gramedia.net/rs:fit:256:0/plain/https://cdn.gramedia.com/uploads/product-metas/ov6azyat0z.jpg"
+                alt="Book Cover"
+              />
+              <div class="wishlist-icon"><i class="far fa-heart"></i></div>
+            </div>
+            <h3 class="product-title">Sapiens: A Brief History of Humankind</h3>
+            <p class="product-author">Yuval Noah Harari</p>
+            <p class="product-price">Rp120.000</p>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img
+                src="https://image.gramedia.net/rs:fit:256:0/plain/https://cdn.gramedia.com/uploads/product-metas/8e5304v449.jpg"
+                alt="Book Cover"
+              />
+              <div class="wishlist-icon"><i class="far fa-heart"></i></div>
+            </div>
+            <h3 class="product-title">Laut Bercerita</h3>
+            <p class="product-author">Leila S. Chudori</p>
+            <p class="product-price">Rp95.000</p>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img
+                src="https://image.gramedia.net/rs:fit:256:0/plain/https://cdn.gramedia.com/uploads/items/9786024246945_Laut-Bercerita.png"
+                alt="Book Cover"
+              />
+              <div class="wishlist-icon"><i class="far fa-heart"></i></div>
+            </div>
+            <h3 class="product-title">Laskar Pelangi</h3>
+            <p class="product-author">Andrea Hirata</p>
+            <p class="product-price">Rp89.000</p>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img
+                src="https://image.gramedia.net/rs:fit:256:0/plain/https://cdn.gramedia.com/uploads/products/-ns-aa-n-x.jpg"
+                alt="Book Cover"
+              />
+              <div class="wishlist-icon"><i class="far fa-heart"></i></div>
+            </div>
+            <h3 class="product-title">The Psychology of Money</h3>
+            <p class="product-author">Morgan Housel</p>
+            <p class="product-price">Rp95.000</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blog Section -->
+      <!-- <div class="section animate-on-scroll">
+        <div class="section-header">
+          <h2 class="section-title">Blog</h2>
+          <a href="#" class="view-all">Lihat Semua</a>
+        </div> -->
+        <div class="section animate-on-scroll">
+    <div class="section-header">
+        <h2 class="section-title">Blog</h2>
+        <a href="arsipartikel.html" class="view-all">Lihat Semua</a>
+    </div>
+        <div class="blog-grid">
+          <div class="blog-card">
+            <div class="blog-image">
+              <img
+                src="https://image.gramedia.net/rs:fit:576:0/plain/https://www.gramedia.com/blog/content/images/2025/05/Copy-of-Untitled-Design-2--1--1.png"
+                alt=""
+              />
+            </div>
+            <div class="blog-content">
+              <h3 class="blog-title">
+                Haikyu!! The Novel 1: Sudut Pandang Baru dari Kisah Karasunoy
+              </h3>
+              <p class="blog-excerpt">
+                Serial Haikyu!! nggak cuma tentang manga dan anime, tapi juga ada
+              novelnya lho! Cek perbandingannya disini!
+              </p>
+              <p class="blog-date">30 MEI 2025</p>
+            </div>
+          </div>
+          <!-- <div class="blog-card">
+            <div class="blog-image">
+              <img
+                src="https://www.gramedia.com/blog/content/images/2025/05/Untitled-design-3--1-.png"
+                alt=""
+              />
+            </div>
+            <div class="blog-content">
+              <h3 class="blog-title">
+                Mengenal Kak Yoyok, Sang Ilustrator Legendaris di Balik Cerita Bobo
+              </h3>
+              <p class="blog-excerpt">
+                Pembaca setia Bobo pasti nggak asing dengan Kak Yoyok, ilustrator
+              legendaris majalah Bobo! Penasaran siapa dia? Simak disini!
+              </p>
+              <p class="blog-date">29 MEI 2025</p>
+            </div>
+          </div> -->
+          <div class="blog-card">
+    <a href="detailartikel.html" class="blog-link">
+        <div class="blog-image">
+            <img src="https://www.gramedia.com/blog/content/images/2025/05/Untitled-design-3--1-.png" alt="Kak Yoyok Artikel" />
+        </div>
+        <div class="blog-content">
+            <h3 class="blog-title">
+                Mengenal Kak Yoyok, Sang Ilustrator Legendaris di Balik Cerita Bobo
+            </h3>
+            <p class="blog-excerpt">
+                Pembaca setia Bobo pasti nggak asing dengan Kak Yoyok, ilustrator
+                legendaris majalah Bobo! Penasaran siapa dia? Simak disini!
+            </p>
+            <p class="blog-date">29 MEI 2025</p>
+        </div>
+    </a>
+</div>
+          <div class="blog-card">
+            <div class="blog-image">
+              <img
+                src="https://image.gramedia.net/rs:fit:576:0/plain/https://www.gramedia.com/blog/content/images/2025/05/Copy-of-Untitled-Design.png"
+                alt=""
+              />
+            </div>
+            <div class="blog-content">
+              <h3 class="blog-title">
+                Mengenal Istilah Teori Penghubung Jodoh Lewat Buku Terbaru
+                Tessia "Red String Theory"
+              </h3>
+              <p class="blog-excerpt">
+                Percaya nggak kalau jodoh itu sudah digariskan jauh sebelum kita
+              lahir? Yuk baca kisah seru tentang teori benang merah disini!
+              </p>
+              <p class="blog-date">28 MEI 2025</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-column">
+            <h3>Produk BooKu</h3>
+            <ul class="footer-links">
+              <li><a href="#">BooKu Digital</a></li>
+              <li><a href="#">BooKu Academy</a></li>
+              <li><a href="#">BooKu Publisher</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Informasi Perusahaan</h3>
+            <ul class="footer-links">
+              <li><a href="#">Tentang Kami</a></li>
+              <li><a href="#">Karir</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Kebijakan Privasi</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Tentang BooKu</h3>
+            <ul class="footer-links">
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Hubungi Kami</a></li>
+              <li><a href="#">Lokasi Toko</a></li>
+              <li><a href="#">Menjadi Reseller</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Aplikasi Seluler Kami</h3>
+            <p style="font-size: 14px; color: #bdc3c7; margin-bottom: 20px">
+              Unduh aplikasi BooKu dan nikmati pengalaman belanja yang lebih
+              baik
+            </p>
+            <div class="app-download">
+              <a href="#" class="app-button">
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/App_Store_%28iOS%29.svg/2048px-App_Store_%28iOS%29.svg.png"
+                  alt="App Store"
+                />
+                <span>App Store</span>
+              </a>
+              <a href="#" class="app-button">
+                <img
+                  src="https://logos-world.net/wp-content/uploads/2020/11/Google-Play-Emblem.png"
+                  alt="Google Play"
+                />
+                <span>Google Play</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div class="logo-g">B</div>
+            <span class="logo-text">BooKu.id</span>
+          </div>
+          <p class="footer-description">
+            Toko buku online terbesar, terlengkap dan terpercaya di Indonesia
+          </p>
+          <div class="social-icons">
+            <a href="#" class="social-icon"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+          </div>
+          <div class="copyright">
+            <p>&copy; 2025 PT BooKu Asri Media</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Carousel functionality
+      let currentSlide = 0;
+      const dots = document.querySelectorAll(".carousel-dot");
+
+      function showSlide(index) {
+        currentSlide = index;
+        dots.forEach((dot, i) => {
+          if (i === index) {
+            dot.classList.add("active");
+          } else {
+            dot.classList.remove("active");
+          }
+        });
+      }
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          showSlide(index);
+        });
+      });
+
+      // Auto-rotate carousel
+      setInterval(() => {
+        currentSlide = (currentSlide + 1) % dots.length;
+        showSlide(currentSlide);
+      }, 5000);
+
+      // Scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animated");
+          }
+        });
+      }, observerOptions);
+
+      // Observe all elements with animate-on-scroll class
+      document.querySelectorAll(".animate-on-scroll").forEach((el) => {
+        observer.observe(el);
+      });
+
+      // Timer countdown functionality
+      function updateTimer() {
+        const timerBoxes = document.querySelectorAll(".timer-box");
+        if (timerBoxes.length >= 3) {
+          let hours = parseInt(timerBoxes[0].textContent);
+          let minutes = parseInt(timerBoxes[1].textContent);
+          let seconds = parseInt(timerBoxes[2].textContent);
+
+          seconds--;
+          if (seconds < 0) {
+            seconds = 59;
+            minutes--;
+            if (minutes < 0) {
+              minutes = 59;
+              hours--;
+              if (hours < 0) {
+                hours = 23;
+              }
+            }
+          }
+
+          timerBoxes[0].textContent = hours.toString().padStart(2, "0");
+          timerBoxes[1].textContent = minutes.toString().padStart(2, "0");
+          timerBoxes[2].textContent = seconds.toString().padStart(2, "0");
+        }
+      }
+
+      // Update timer every second
+      setInterval(updateTimer, 1000);
+
+      // Search functionality
+      const searchInput = document.querySelector(".search-bar input");
+      const searchButton = document.querySelector(".search-bar button");
+
+      searchButton.addEventListener("click", () => {
+        const searchTerm = searchInput.value.trim();
+        if (searchTerm) {
+          console.log("Searching for:", searchTerm);
+          // Here you would implement actual search functionality
+        }
+      });
+
+      searchInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+          searchButton.click();
+        }
+      });
+
+      // Wishlist functionality
+      document.querySelectorAll(".wishlist-icon").forEach((icon) => {
+        icon.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+
+          const heartIcon = icon.querySelector("i");
+          if (heartIcon.classList.contains("far")) {
+            heartIcon.classList.remove("far");
+            heartIcon.classList.add("fas");
+            icon.style.background = "#e91e63";
+            icon.style.color = "white";
+          } else {
+            heartIcon.classList.remove("fas");
+            heartIcon.classList.add("far");
+            icon.style.background = "rgba(255,255,255,0.9)";
+            icon.style.color = "#333";
+          }
+        });
+      });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Loading effect for images
+      document.querySelectorAll("img").forEach((img) => {
+        img.addEventListener("load", function () {
+          this.style.opacity = "1";
+        });
+
+        img.addEventListener("error", function () {
+          this.style.opacity = "0.5";
+          this.alt = "Image not available";
+        });
+      });
+
+      // Add loading states
+      window.addEventListener("load", () => {
+        document.body.classList.add("loaded");
+      });
+
+      // Add smooth page transition
+document.querySelectorAll('.blog-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.body.style.opacity = '0';
+        document.body.style.transition = 'opacity 0.3s ease';
+        
+        setTimeout(() => {
+            window.location.href = this.getAttribute('href');
+        }, 300);
+    });
+});
+
+// Add initial page load animation
+document.addEventListener('DOMContentLoaded', function() {
+    document.body.style.opacity = '0';
+    setTimeout(() => {
+        document.body.style.opacity = '1';
+        document.body.style.transition = 'opacity 0.5s ease';
+    }, 100);
+});
+
+document.querySelectorAll('.view-all').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.body.style.opacity = '0';
+        document.body.style.transition = 'opacity 0.3s ease';
+        
+        setTimeout(() => {
+            window.location.href = this.getAttribute('href');
+        }, 300);
+    });
+});
+    </script>
+  </body>
+</html>

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout - BooKu.id</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/pembayaran1.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <a href="#" class="logo">
+            <div class="logo-g">B</div>
+            <div class="logo-text">BooKu.id</div>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+      <div class="main-content">
+        <!-- Checkout Section -->
+        <div class="checkout-section">
+          <h1 class="page-title">Checkout</h1>
+
+          <!-- Progress Steps -->
+          <div class="progress-steps">
+            <div class="progress-line">
+              <div class="progress-fill"></div>
+            </div>
+            <div class="step active">
+              <div class="step-number">1</div>
+              <div class="step-label">Pengiriman</div>
+            </div>
+            <div class="step inactive">
+              <div class="step-number">2</div>
+              <div class="step-label">Pembayaran</div>
+            </div>
+          </div>
+
+          <!-- Address Section -->
+          <div class="address-section">
+            <div class="address-tabs">
+              <div class="address-tab active">Alamat Pengiriman</div>
+              <div class="address-tab">Alamat Lainnya</div>
+            </div>
+
+            <div class="address-content">
+              <div class="address-type">
+                <span class="address-type-badge">Kos</span>
+                <span class="address-type-main">Utama</span>
+              </div>
+
+              <div class="customer-info">
+                <div class="customer-name">Aleron Maulana</div>
+                <div class="customer-phone">+6281259770878</div>
+              </div>
+
+              <div class="customer-address">
+                JAWA TIMUR KOTA SURABAYA GUBENG 60282 Jalan Kertajaya Va No.
+                43,/RW.3. Airlangga Kosan, Pagar hitam, Gubeng, Kota Surabaya,
+                Jawa Timur, 60282
+              </div>
+            </div>
+          </div>
+
+          <!-- Order Section -->
+          <div class="order-section">
+            <h2 class="order-title">Pesanan 1</h2>
+
+            <div class="store-info">
+              <i class="fas fa-store store-icon"></i>
+              <span class="store-name">BooKu Jakarta Matraman</span>
+            </div>
+
+            <div class="product-item">
+              <div class="product-image">
+                <img
+                  src="https://image.gramedia.net/rs:fit:256:0/plain/https://cdn.gramedia.com/uploads/products/95ob5m98ur.jpg"
+                  alt="Seporsi Mie Ayam Sebelum Mati"
+                />
+              </div>
+              <div class="product-details">
+                <div class="product-format">Soft Cover</div>
+                <div class="product-title">Seporsi Mie Ayam Sebelum Mati</div>
+                <div class="product-price">
+                  <span class="current-price">Rp79.050</span>
+                  <span class="original-price">Rp93.000</span>
+                  <span class="discount-badge">15%</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="shipping-section">
+              <div class="shipping-label">Pengiriman</div>
+              <div class="shipping-dropdown">
+                <select class="shipping-select">
+                  <option value="kgxpress">
+                    ⭐ KGXpress Regular Rp 22.242
+                  </option>
+                  <option value="jne">🚚 JNE Regular Rp 25.000</option>
+                  <option value="pos">📦 Pos Indonesia Rp 20.000</option>
+                  <option value="sicepat">⚡ SiCepat Regular Rp 23.500</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="order-total">
+              <span>Total Pesanan</span>
+              <span>Rp101.292</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="order-summary">
+          <h3 class="summary-title">Ringkasan Belanja</h3>
+
+          <div class="summary-row">
+            <span class="summary-label">Total Harga (1 Barang)</span>
+            <span class="summary-value">Rp93.000</span>
+          </div>
+
+          <div class="summary-row">
+            <span class="summary-label">Total Biaya Pengiriman</span>
+            <span class="summary-value">Rp22.242</span>
+          </div>
+
+          <div class="summary-row">
+            <span class="summary-label">Diskon Belanja</span>
+            <span class="summary-value discount-value">-Rp13.950</span>
+          </div>
+
+          <div class="summary-row total-row">
+            <span class="total-label">Total Belanja</span>
+            <span class="total-value">Rp101.292</span>
+          </div>
+
+          <button class="continue-btn" onclick="window.location.href='pembayaran2.html'">
+            Lanjut Pembayaran
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget" onclick="openChat()">
+      <i class="fas fa-comments"></i>
+      <div class="chat-badge">!</div>
+    </div>
+
+    <script>
+      // Address tab switching
+      document.querySelectorAll(".address-tab").forEach((tab) => {
+        tab.addEventListener("click", function () {
+          // Remove active class from all tabs
+          document
+            .querySelectorAll(".address-tab")
+            .forEach((t) => t.classList.remove("active"));
+
+          // Add active class to clicked tab
+          this.classList.add("active");
+
+          // Add animation to content
+          const content = document.querySelector(".address-content");
+          content.style.animation = "none";
+          setTimeout(() => {
+            content.style.animation = "slideInUp 0.3s ease";
+          }, 10);
+
+          // Simulate different address content
+          if (this.textContent === "Alamat Lainnya") {
+            updateAddressContent("other");
+          } else {
+            updateAddressContent("main");
+          }
+        });
+      });
+
+      // Update address content
+      function updateAddressContent(type) {
+        const addressContent = document.querySelector(".address-content");
+
+        if (type === "other") {
+          addressContent.innerHTML = `
+                <div class="address-type">
+                    <span class="address-type-badge">Rumah</span>
+                </div>
+                
+                <div class="customer-info">
+                    <div class="customer-name">Aleron Maulana</div>
+                    <div class="customer-phone">+6281259770878</div>
+                </div>
+                
+                <div class="customer-address">
+                    JAWA TIMUR KOTA MALANG LOWOKWARU 65141 Jalan Veteran No. 15, Ketawanggede, Lowokwaru, Kota Malang, Jawa Timur, 65141
+                </div>
+            `;
+        } else {
+          addressContent.innerHTML = `
+                <div class="address-type">
+                    <span class="address-type-badge">Kos</span>
+                    <span class="address-type-main">Utama</span>
+                </div>
+                
+                <div class="customer-info">
+                    <div class="customer-name">Aleron Maulana</div>
+                    <div class="customer-phone">+6281259770878</div>
+                </div>
+                
+                <div class="customer-address">
+                    JAWA TIMUR KOTA SURABAYA GUBENG 60282 Jalan Kertajaya Va No. 43,/RW.3. Airlangga Kosan, Pagar hitam, Gubeng, Kota Surabaya, Jawa Timur, 60282
+                </div>
+            `;
+        }
+      }
+
+      // Shipping dropdown change
+      document
+        .querySelector(".shipping-select")
+        .addEventListener("change", function () {
+          const selectedOption = this.options[this.selectedIndex];
+          const shippingCost = selectedOption.value;
+
+          // Update shipping cost in summary
+          updateShippingCost(shippingCost);
+
+          // Add animation to dropdown
+          this.style.transform = "scale(0.98)";
+          setTimeout(() => {
+            this.style.transform = "scale(1)";
+          }, 150);
+        });
+
+      // Update shipping cost
+      function updateShippingCost(shippingType) {
+        const shippingCosts = {
+          kgxpress: 22242,
+          jne: 25000,
+          pos: 20000,
+          sicepat: 23500,
+        };
+
+        const newShippingCost = shippingCosts[shippingType] || 22242;
+        const basePrice = 93000;
+        const discount = 13950;
+        const newTotal = basePrice + newShippingCost - discount;
+
+        // Update summary values
+        document.querySelector(
+          ".summary-row:nth-child(2) .summary-value"
+        ).textContent = `Rp${newShippingCost.toLocaleString("id-ID")}`;
+        document.querySelector(
+          ".total-value"
+        ).textContent = `Rp${newTotal.toLocaleString("id-ID")}`;
+        document.querySelector(
+          ".order-total span:last-child"
+        ).textContent = `Rp${newTotal.toLocaleString("id-ID")}`;
+
+        // Add animation to updated values
+        const updatedElements = [
+          document.querySelector(".summary-row:nth-child(2) .summary-value"),
+          document.querySelector(".total-value"),
+          document.querySelector(".order-total span:last-child"),
+        ];
+
+        updatedElements.forEach((element) => {
+          element.style.animation = "pulse 0.5s ease";
+          setTimeout(() => {
+            element.style.animation = "";
+          }, 500);
+        });
+      }
+
+      // Continue to payment
+      function continueToPayment() {
+        const button = document.querySelector(".continue-btn");
+        button.innerHTML =
+          '<i class="fas fa-spinner fa-spin"></i> Memproses...';
+        button.disabled = true;
+
+        // Simulate processing
+        setTimeout(() => {
+          // Update progress steps
+          document.querySelector(".step.active").classList.remove("active");
+          document.querySelector(".step.inactive").classList.add("active");
+          document.querySelector(".step.inactive").classList.remove("inactive");
+
+          // Show success message
+          alert("Melanjutkan ke halaman pembayaran...");
+
+          // Reset button
+          button.innerHTML = "Lanjut Pembayaran";
+          button.disabled = false;
+        }, 2000);
+      }
+
+      // Chat widget
+      function openChat() {
+        const chatWidget = document.querySelector(".chat-widget");
+        chatWidget.style.animation = "pulse 0.3s ease";
+
+        setTimeout(() => {
+          chatWidget.style.animation = "";
+          alert("Chat support akan segera tersedia!");
+        }, 300);
+      }
+
+      // Logo click to go home
+      document.querySelector(".logo").addEventListener("click", function (e) {
+        e.preventDefault();
+        if (
+          confirm("Kembali ke halaman utama? Progres checkout akan hilang.")
+        ) {
+          window.location.href = "#";
+        }
+      });
+
+      // Form validation
+      function validateForm() {
+        const shippingSelect = document.querySelector(".shipping-select");
+
+        if (!shippingSelect.value) {
+          alert("Pilih metode pengiriman terlebih dahulu!");
+          shippingSelect.focus();
+          return false;
+        }
+
+        return true;
+      }
+
+      // Add hover effects to interactive elements
+      document
+        .querySelectorAll(".address-tab, .shipping-select, .continue-btn")
+        .forEach((element) => {
+          element.addEventListener("mouseenter", function () {
+            this.style.transform = "translateY(-2px)";
+          });
+
+          element.addEventListener("mouseleave", function () {
+            this.style.transform = "translateY(0)";
+          });
+        });
+
+      // Smooth scroll animations
+      const animateOnScroll = () => {
+        const elements = document.querySelectorAll(
+          ".address-section, .order-section"
+        );
+
+        elements.forEach((element, index) => {
+          const elementTop = element.getBoundingClientRect().top;
+          const elementVisible = 150;
+
+          if (elementTop < window.innerHeight - elementVisible) {
+            element.style.animationDelay = `${index * 0.2}s`;
+            element.style.opacity = "1";
+            element.style.transform = "translateY(0)";
+          }
+        });
+      };
+
+      window.addEventListener("scroll", animateOnScroll);
+      window.addEventListener("load", animateOnScroll);
+
+      // Auto-save form data
+      let autoSaveTimer;
+      document
+        .querySelector(".shipping-select")
+        .addEventListener("change", function () {
+          clearTimeout(autoSaveTimer);
+          autoSaveTimer = setTimeout(() => {
+            console.log("Form data auto-saved");
+            // Here you would typically save to localStorage or send to server
+          }, 1000);
+        });
+
+      // Keyboard navigation
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" && e.target.classList.contains("continue-btn")) {
+          if (validateForm()) {
+            continueToPayment();
+          }
+        }
+      });
+
+      // Initialize page
+      document.addEventListener("DOMContentLoaded", function () {
+        // Add loading animation
+        document.body.style.opacity = "0";
+        setTimeout(() => {
+          document.body.style.transition = "opacity 0.5s ease";
+          document.body.style.opacity = "1";
+        }, 100);
+
+        // Initialize tooltips or other components if needed
+        console.log("Checkout page initialized");
+      });
+    </script>
+  </body>
+</html>

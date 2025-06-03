@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pembayaran - BooKu.id</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/pembayaran2.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <a href="#" class="logo">
+            <div class="logo-g">B</div>
+            <div class="logo-text">BooKu.id</div>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+      <div class="main-content">
+        <!-- Payment Section -->
+        <div class="payment-section">
+          <h1 class="page-title">Checkout</h1>
+
+          <!-- Progress Steps -->
+          <div class="progress-steps">
+            <div class="progress-line">
+              <div class="progress-fill"></div>
+            </div>
+            <div class="step completed">
+              <div class="step-number"></div>
+              <div class="step-label">Pengiriman</div>
+            </div>
+            <div class="step active">
+              <div class="step-number">2</div>
+              <div class="step-label">Pembayaran</div>
+            </div>
+          </div>
+
+          <!-- Payment Methods -->
+          <div class="payment-methods">
+            <h2 class="payment-title">Metode Pembayaran</h2>
+
+            <!-- Electronic Money -->
+            <div class="payment-category">
+              <div
+                class="category-header active"
+                onclick="toggleCategory(this)"
+              >
+                <span class="category-title">Uang Elektronik</span>
+                <i class="fas fa-chevron-down category-icon"></i>
+              </div>
+              <div class="category-content active">
+                <div
+                  class="payment-option"
+                  onclick="selectPayment(this, 'qris')"
+                >
+                  <div class="option-info">
+                    <div class="option-logo qris-logo">QR</div>
+                    <span class="option-name">QRIS</span>
+                  </div>
+                  <div class="option-radio selected"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Virtual Account -->
+            <div class="payment-category">
+              <div class="category-header" onclick="toggleCategory(this)">
+                <span class="category-title">Virtual Account</span>
+                <i class="fas fa-chevron-down category-icon"></i>
+              </div>
+              <div class="category-content">
+                <div
+                  class="payment-option"
+                  onclick="selectPayment(this, 'mandiri')"
+                >
+                  <div class="option-info">
+                    <div class="option-logo mandiri-logo">M</div>
+                    <span class="option-name">Mandiri Virtual Account</span>
+                  </div>
+                  <div class="option-radio"></div>
+                </div>
+                <div
+                  class="payment-option"
+                  onclick="selectPayment(this, 'permata')"
+                >
+                  <div class="option-info">
+                    <div class="option-logo permata-logo">P</div>
+                    <span class="option-name">Permata Virtual Account</span>
+                  </div>
+                  <div class="option-radio"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Credit/Debit Card -->
+            <div class="payment-category">
+              <div class="category-header" onclick="toggleCategory(this)">
+                <span class="category-title">Kartu Kredit/Debit</span>
+                <i class="fas fa-chevron-down category-icon"></i>
+              </div>
+              <div class="category-content">
+                <div
+                  class="payment-option"
+                  onclick="selectPayment(this, 'card')"
+                >
+                  <div class="option-info">
+                    <div class="option-logo card-logo">💳</div>
+                    <span class="option-name">Kartu Kredit/Debit</span>
+                  </div>
+                  <div class="option-radio"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Promo Section -->
+          <div class="promo-section">
+            <div class="promo-header">
+              <h2 class="promo-title">Promo</h2>
+              <a href="#" class="view-all">Lihat Semua</a>
+            </div>
+
+            <div class="promo-input">
+              <input
+                type="text"
+                class="promo-code-input"
+                placeholder="Kode Promo"
+                id="promoCode"
+              />
+              <button class="apply-promo-btn" onclick="applyPromo()">
+                Gunakan
+              </button>
+            </div>
+
+            <div class="voucher-grid">
+              <div
+                class="voucher-card"
+                onclick="selectVoucher(this, 'BACAHEMAT20')"
+              >
+                <div class="voucher-badge">💰</div>
+                <div class="voucher-name">Voucher Mid Year Sale 6.6 - 20K</div>
+                <div class="voucher-discount">Diskon Rp20.000</div>
+                <div class="voucher-details">
+                  • Diskon Belanja<br />
+                  • Berlaku s/d 31 Juli 2025<br />
+                  • Min. Belanja Rp200.000
+                </div>
+                <div class="voucher-footer">
+                  <span class="voucher-code">Kode: BACAHEMAT20</span>
+                  <button class="voucher-info" onclick="showVoucherInfo(event)">
+                    Info
+                  </button>
+                </div>
+              </div>
+
+              <div
+                class="voucher-card"
+                onclick="selectVoucher(this, 'SERUKGXS')"
+              >
+                <div class="voucher-badge">🚚</div>
+                <div class="voucher-name">Potongan Ongkir - KGX</div>
+                <div class="voucher-discount">Diskon Rp5.000</div>
+                <div class="voucher-details">
+                  • Diskon Ongkir<br />
+                  • Berlaku s/d 31 Juli 2025<br />
+                  • Min. Belanja Rp0
+                </div>
+                <div class="voucher-footer">
+                  <span class="voucher-code">Kode: SERUKGXS</span>
+                  <button class="voucher-info" onclick="showVoucherInfo(event)">
+                    Info
+                  </button>
+                </div>
+              </div>
+
+              <div
+                class="voucher-card"
+                onclick="selectVoucher(this, 'GXBRIBTS20')"
+              >
+                <div class="voucher-badge">🎓</div>
+                <div class="voucher-name">Voucher Bank BRI Back To School</div>
+                <div class="voucher-discount">Diskon 20%</div>
+                <div class="voucher-details">
+                  • Diskon Belanja<br />
+                  • Berlaku s/d 31 Juli 2025<br />
+                  • Min. Belanja Rp200.000
+                </div>
+                <div class="voucher-footer">
+                  <span class="voucher-code">Kode: GXBRIBTS20</span>
+                  <button class="voucher-info" onclick="showVoucherInfo(event)">
+                    Info
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment Summary -->
+        <div class="payment-summary">
+          <h3 class="summary-title">Rincian Pembayaran</h3>
+
+          <div class="summary-row">
+            <span class="summary-label">Total Harga (1 Barang)</span>
+            <span class="summary-value">Rp93.000</span>
+          </div>
+
+          <div class="summary-row">
+            <span class="summary-label">Total Biaya Pengiriman</span>
+            <span class="summary-value">Rp22.242</span>
+          </div>
+
+          <div class="summary-row">
+            <span class="summary-label">Diskon Belanja</span>
+            <span class="summary-value discount-value">-Rp13.950</span>
+          </div>
+
+          <div class="summary-row" id="voucherDiscount" style="display: none">
+            <span class="summary-label">Diskon Voucher</span>
+            <span class="summary-value discount-value">-Rp0</span>
+          </div>
+
+          <div class="summary-row total-row">
+            <span class="total-label">Total Pembayaran</span>
+            <span class="total-value" id="totalAmount">Rp101.292</span>
+          </div>
+
+          <button class="pay-btn" onclick="window.location.href='pembayaran3.html'">
+            Bayar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget" onclick="openChat()">
+      <i class="fas fa-comments"></i>
+    </div>
+
+    <script>
+      let selectedPaymentMethod = "qris";
+      let appliedVoucher = null;
+      let baseTotal = 101292;
+
+      // Toggle payment category
+      function toggleCategory(header) {
+        const content = header.nextElementSibling;
+        const icon = header.querySelector(".category-icon");
+
+        // Close other categories
+        document.querySelectorAll(".category-header").forEach((h) => {
+          if (h !== header) {
+            h.classList.remove("active");
+            h.nextElementSibling.classList.remove("active");
+          }
+        });
+
+        // Toggle current category
+        header.classList.toggle("active");
+        content.classList.toggle("active");
+
+        // Animation
+        if (content.classList.contains("active")) {
+          content.style.maxHeight = content.scrollHeight + "px";
+        } else {
+          content.style.maxHeight = "0";
+        }
+      }
+
+      // Select payment method
+      function selectPayment(option, method) {
+        // Remove selection from all options
+        document.querySelectorAll(".option-radio").forEach((radio) => {
+          radio.classList.remove("selected");
+        });
+
+        // Add selection to clicked option
+        const radio = option.querySelector(".option-radio");
+        radio.classList.add("selected");
+
+        selectedPaymentMethod = method;
+
+        // Animation
+        option.style.transform = "scale(0.98)";
+        setTimeout(() => {
+          option.style.transform = "scale(1)";
+        }, 150);
+
+        console.log("Selected payment method:", method);
+      }
+
+      // Apply promo code
+      function applyPromo() {
+        const promoCode = document.getElementById("promoCode").value.trim();
+        const button = document.querySelector(".apply-promo-btn");
+
+        if (!promoCode) {
+          alert("Masukkan kode promo terlebih dahulu!");
+          return;
+        }
+
+        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+        button.disabled = true;
+
+        setTimeout(() => {
+          const validCodes = [
+            "BACAHEMAT20",
+            "SERUKGXS",
+            "GXBRIBTS20",
+            "DISKON10",
+          ];
+
+          if (validCodes.includes(promoCode.toUpperCase())) {
+            selectVoucherByCode(promoCode.toUpperCase());
+            document.getElementById("promoCode").value = "";
+            showNotification("Kode promo berhasil diterapkan!", "success");
+          } else {
+            showNotification("Kode promo tidak valid!", "error");
+          }
+
+          button.innerHTML = "Gunakan";
+          button.disabled = false;
+        }, 1500);
+      }
+
+      // Select voucher
+      function selectVoucher(card, code) {
+        // Remove selection from all vouchers
+        document.querySelectorAll(".voucher-card").forEach((c) => {
+          c.style.borderColor = "#e9ecef";
+          c.style.backgroundColor = "";
+        });
+
+        // Select current voucher
+        card.style.borderColor = "#0066cc";
+        card.style.backgroundColor = "#f8f9ff";
+
+        appliedVoucher = code;
+        applyVoucherDiscount(code);
+
+        // Animation
+        card.style.transform = "scale(0.95)";
+        setTimeout(() => {
+          card.style.transform = "scale(1)";
+        }, 200);
+      }
+
+      // Select voucher by code
+      function selectVoucherByCode(code) {
+        const voucherCards = document.querySelectorAll(".voucher-card");
+        voucherCards.forEach((card) => {
+          const cardCode = card
+            .querySelector(".voucher-code")
+            .textContent.split(": ")[1];
+          if (cardCode === code) {
+            selectVoucher(card, code);
+          }
+        });
+      }
+
+      // Apply voucher discount
+      function applyVoucherDiscount(code) {
+        const voucherRow = document.getElementById("voucherDiscount");
+        const voucherValue = voucherRow.querySelector(".summary-value");
+        const totalElement = document.getElementById("totalAmount");
+
+        let discount = 0;
+
+        switch (code) {
+          case "BACAHEMAT20":
+            discount = 20000;
+            break;
+          case "SERUKGXS":
+            discount = 5000;
+            break;
+          case "GXBRIBTS20":
+            discount = Math.floor(baseTotal * 0.2); // 20% discount
+            break;
+        }
+
+        if (discount > 0) {
+          voucherRow.style.display = "flex";
+          voucherValue.textContent = `-Rp${discount.toLocaleString("id-ID")}`;
+
+          const newTotal = baseTotal - discount;
+          totalElement.textContent = `Rp${newTotal.toLocaleString("id-ID")}`;
+
+          // Animation
+          voucherValue.style.animation = "pulse 0.5s ease";
+          totalElement.style.animation = "pulse 0.5s ease";
+        }
+      }
+
+      // Show voucher info
+      function showVoucherInfo(event) {
+        event.stopPropagation();
+        alert("Detail voucher akan ditampilkan di sini");
+      }
+
+      // Process payment
+      function processPayment() {
+        if (!selectedPaymentMethod) {
+          alert("Pilih metode pembayaran terlebih dahulu!");
+          return;
+        }
+
+        const button = document.querySelector(".pay-btn");
+        button.innerHTML =
+          '<i class="fas fa-spinner fa-spin"></i> Memproses...';
+        button.disabled = true;
+
+        setTimeout(() => {
+          showNotification("Pembayaran berhasil diproses!", "success");
+
+          // Simulate redirect to payment gateway
+          setTimeout(() => {
+            alert(
+              `Mengarahkan ke ${getPaymentGatewayName(
+                selectedPaymentMethod
+              )}...`
+            );
+            button.innerHTML = '<i class="fas fa-shield-alt"></i> Bayar';
+            button.disabled = false;
+          }, 1000);
+        }, 2000);
+      }
+
+      // Get payment gateway name
+      function getPaymentGatewayName(method) {
+        const gateways = {
+          qris: "QRIS Payment",
+          mandiri: "Mandiri Virtual Account",
+          permata: "Permata Virtual Account",
+          card: "Credit/Debit Card Payment",
+        };
+        return gateways[method] || "Payment Gateway";
+      }
+
+      // Show notification
+      function showNotification(message, type) {
+        const notification = document.createElement("div");
+        notification.innerHTML = `
+            <i class="fas fa-${
+              type === "success" ? "check-circle" : "exclamation-circle"
+            }"></i>
+            ${message}
+        `;
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: ${type === "success" ? "#28a745" : "#dc3545"};
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            z-index: 10000;
+            animation: slideInRight 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+        `;
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+          notification.remove();
+        }, 3000);
+      }
+
+      // Chat widget
+      function openChat() {
+        const chatWidget = document.querySelector(".chat-widget");
+        chatWidget.style.animation = "pulse 0.3s ease";
+
+        setTimeout(() => {
+          chatWidget.style.animation = "";
+          showNotification("Chat support akan segera tersedia!", "success");
+        }, 300);
+      }
+
+      // Logo click to go home
+      document.querySelector(".logo").addEventListener("click", function (e) {
+        e.preventDefault();
+        if (
+          confirm("Kembali ke halaman utama? Progres pembayaran akan hilang.")
+        ) {
+          window.location.href = "#";
+        }
+      });
+
+      // View all vouchers
+      document
+        .querySelector(".view-all")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          alert("Menampilkan semua voucher yang tersedia...");
+        });
+
+      // Promo code input enter key
+      document
+        .getElementById("promoCode")
+        .addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            applyPromo();
+          }
+        });
+
+      // Auto-save selected payment method
+      let autoSaveTimer;
+      function autoSave() {
+        clearTimeout(autoSaveTimer);
+        autoSaveTimer = setTimeout(() => {
+          console.log("Payment preferences auto-saved");
+          // Here you would typically save to localStorage or send to server
+        }, 1000);
+      }
+
+      // Add hover effects to interactive elements
+      document
+        .querySelectorAll(".payment-option, .voucher-card, .pay-btn")
+        .forEach((element) => {
+          element.addEventListener("mouseenter", function () {
+            if (!this.style.transform.includes("scale")) {
+              this.style.transform = "translateY(-2px)";
+            }
+          });
+
+          element.addEventListener("mouseleave", function () {
+            if (!this.style.transform.includes("scale")) {
+              this.style.transform = "translateY(0)";
+            }
+          });
+        });
+
+      // Initialize page
+      document.addEventListener("DOMContentLoaded", function () {
+        // Add loading animation
+        document.body.style.opacity = "0";
+        setTimeout(() => {
+          document.body.style.transition = "opacity 0.5s ease";
+          document.body.style.opacity = "1";
+        }, 100);
+
+        // Initialize default selections
+        console.log("Payment page initialized");
+        autoSave();
+      });
+
+      // Keyboard shortcuts
+      document.addEventListener("keydown", function (e) {
+        if (e.ctrlKey && e.key === "Enter") {
+          processPayment();
+        }
+      });
+    </script>
+  </body>
+</html>

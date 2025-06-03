@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detail Buku - Filosofi Teras</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#e6e6d6] text-[#2e2e2e] font-sans min-h-screen flex flex-col">
+  <!-- HEADER -->
+  <div class="flex items-center justify-between px-4 py-4">
+    <div class="text-xl">&#8592;</div>
+    <div class="text-xl">&#x1F516;</div>
+  </div>
+
+  <!-- KONTEN UTAMA (gambar + konten putih) -->
+  <div class="flex flex-col flex-grow">
+    <!-- Gambar buku -->
+    <div class="flex flex-col items-center">
+      <div class="flex items-center space-x-4">
+        <div class="text-2xl text-gray-600">&#8592;</div>
+        <img src="https://upload.wikimedia.org/wikipedia/id/d/d7/Filosofi_Teras.jpg" alt="Filosofi Teras" class="w-40 h-auto rounded shadow-md" />
+        <div class="text-2xl text-gray-600">&#8594;</div>
+      </div>
+      <div class="mt-2 flex justify-center space-x-1">
+        <div class="w-2 h-2 bg-gray-400 rounded-full"></div>
+        <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
+        <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
+      </div>
+    </div>
+
+    <!-- Kontainer putih (detail buku) -->
+    <div class="bg-white rounded-t-3xl p-6 mt-6 flex flex-col flex-grow">
+      <div class="flex justify-between items-start">
+        <div>
+          <h1 class="text-xl font-bold">Filosofi Teras</h1>
+          <p class="text-gray-500 text-sm">Henry Manampiring</p>
+        </div>
+        <div class="text-right">
+          <p class="text-lg font-semibold text-[#a05c24]">Rp 92.000</p>
+        </div>
+      </div>
+
+      <!-- Info card -->
+      <div class="mt-4 grid grid-cols-3 gap-4 text-center border border-gray-200 rounded-lg py-3 px-2 text-sm">
+        <div>
+          <p class="font-semibold">346</p>
+          <p class="text-gray-500">Page</p>
+        </div>
+        <div>
+          <p class="font-semibold text-yellow-500">★ 4.2</p>
+          <p class="text-gray-500">Rating</p>
+        </div>
+        <div>
+          <p class="font-semibold">Indonesia</p>
+          <p class="text-gray-500">Language</p>
+        </div>
+      </div>
+
+      <!-- Sinopsis -->
+      <div class="mt-6 flex-grow">
+        <h2 class="font-semibold text-lg mb-2">Synopsis</h2>
+        <p class="text-sm text-gray-700 leading-relaxed">
+          Filosofi Teras, diawali dengan menceritakan tentang sebuah survei kekhawatiran nasional yang semakin masif sekaligus menyajikan tentang sekilas kehidupan si penulis yang dipenuhi oleh emosi negatif yang berlebihan. Dalam buku ini dijelaskan bahwa penyebab emosi negatif atau kecemasan yang berlebihan disebabkan oleh rasio atau pola...
+        </p>
+      </div>
+
+      <!-- Tombol -->
+      <div class="mt-6">
+        <button class="bg-[#4a2d1f] text-white w-full py-3 rounded-full font-semibold hover:bg-[#3c241a] transition">
+          Buy Now
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

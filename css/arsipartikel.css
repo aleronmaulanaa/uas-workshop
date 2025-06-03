@@ -1,0 +1,540 @@
+  /* Reset dan Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f9f9f9;
+
+         opacity: 1;
+    transition: opacity 0.3s ease;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.3s ease;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.3s ease;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Header Styles */
+      header {
+        background-color: #fff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        padding: 15px 0;
+      }
+
+      .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .menu-toggle {
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: #555;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .menu-toggle:hover {
+        color: #4a6bce;
+      }
+
+      .logo {
+        text-align: center;
+        flex-grow: 1;
+      }
+
+      .logo img {
+        height: 40px;
+        display: inline-block;
+      }
+
+      .search-button {
+        background: none;
+        border: none;
+        font-size: 20px;
+        color: #555;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .search-button:hover {
+        color: #4a6bce;
+      }
+
+      /* Blog Grid */
+      .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        margin: 40px 0;
+      }
+
+      .blog-card {
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .blog-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .blog-card:hover .blog-image img {
+        transform: scale(1.05);
+      }
+
+      .blog-image {
+        height: 200px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .blog-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .blog-content {
+        padding: 20px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .blog-title {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        line-height: 1.3;
+        color: #333;
+      }
+
+      .blog-title a:hover {
+        color: #4a6bce;
+      }
+
+      .blog-excerpt {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 15px;
+        flex-grow: 1;
+      }
+
+      .blog-date {
+        font-size: 12px;
+        color: #999;
+        font-weight: 500;
+      }
+
+      /* Pagination */
+      .pagination {
+        display: flex;
+        justify-content: flex-end;
+        margin: 40px 0;
+      }
+
+      .pagination-button {
+        padding: 8px 15px;
+        background-color: #fff;
+        border: 1px solid #eee;
+        border-radius: 4px;
+        color: #4a6bce;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      .pagination-button:hover {
+        background-color: #4a6bce;
+        color: #fff;
+      }
+
+      /* Footer */
+      footer {
+        background-color: #fff;
+        padding: 30px 0;
+        border-top: 1px solid #eee;
+        margin-top: 40px;
+      }
+
+      .footer-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+
+      .social-link {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background-color: #f5f5f5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #555;
+        transition: all 0.3s ease;
+      }
+
+      .social-link:hover {
+        background-color: #4a6bce;
+        color: #fff;
+        transform: translateY(-3px);
+      }
+
+      .copyright {
+        font-size: 14px;
+        color: #999;
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .blog-card {
+        animation: fadeIn 0.5s ease forwards;
+        opacity: 0;
+      }
+
+      .blog-card:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .blog-card:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .blog-card:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .blog-card:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+      .blog-card:nth-child(5) {
+        animation-delay: 0.5s;
+      }
+      .blog-card:nth-child(6) {
+        animation-delay: 0.6s;
+      }
+      .blog-card:nth-child(7) {
+        animation-delay: 0.7s;
+      }
+      .blog-card:nth-child(8) {
+        animation-delay: 0.8s;
+      }
+      .blog-card:nth-child(9) {
+        animation-delay: 0.9s;
+      }
+      .blog-card:nth-child(10) {
+        animation-delay: 1s;
+      }
+      .blog-card:nth-child(11) {
+        animation-delay: 1.1s;
+      }
+      .blog-card:nth-child(12) {
+        animation-delay: 1.2s;
+      }
+
+      /* Hover Effects */
+      .blog-title {
+        position: relative;
+        display: inline-block;
+      }
+
+      .blog-title::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -2px;
+        left: 0;
+        background-color: #4a6bce;
+        transition: width 0.3s ease;
+      }
+
+      .blog-card:hover .blog-title::after {
+        width: 100%;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1024px) {
+        .blog-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .blog-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .blog-image {
+          height: 180px;
+        }
+      }
+
+      /* Loading Effect */
+      .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        transition: opacity 0.5s ease, visibility 0.5s ease;
+      }
+
+      .loading-overlay.hidden {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .loader {
+        width: 48px;
+        height: 48px;
+        border: 5px solid #4a6bce;
+        border-bottom-color: transparent;
+        border-radius: 50%;
+        animation: loader 1s linear infinite;
+      }
+
+      @keyframes loader {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Hover Card Effect */
+      .blog-card {
+        position: relative;
+      }
+
+      .blog-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        box-shadow: 0 15px 35px rgba(74, 107, 206, 0.2);
+        border-radius: 8px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: -1;
+      }
+
+      .blog-card:hover::before {
+        opacity: 1;
+      }
+
+      /* Category Tag */
+      .category-tag {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background-color: rgba(74, 107, 206, 0.8);
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 500;
+        z-index: 2;
+        backdrop-filter: blur(5px);
+      }
+
+      /* Gramedia Logo Color */
+      .gramedia-blue {
+        color: #4a6bce;
+      }
+
+      /* Tambahkan di bagian style */
+      .pagination {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 40px 0;
+      }
+
+      .pagination-dots {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #ddd;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .dot.active {
+        background-color: #4a6bce;
+        transform: scale(1.2);
+      }
+
+      .prev-button {
+        margin-right: auto;
+      }
+
+      .next-button {
+        margin-left: auto;
+      }
+
+      /* Animation for page transition */
+@keyframes pageEnter {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Add smooth transition when clicking "Lihat Semua" */
+.view-all {
+    position: relative;
+    overflow: hidden;
+}
+
+.view-all:hover {
+    color: #4a6bce;
+    transform: translateX(5px);
+}
+
+.view-all::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #4a6bce;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.view-all:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Add animation to the blog page when it loads */
+.blog-grid {
+    animation: pageEnter 0.8s ease-out;
+}
+
+.blog-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(74, 107, 206, 0.15);
+}
+
+/* Add after existing animations */
+
+/* Article Link Transitions */
+.blog-card a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+}
+
+.blog-card .blog-image a {
+    display: block;
+    overflow: hidden;
+}
+
+.blog-card .blog-image a:hover img {
+    transform: scale(1.1);
+}
+
+.blog-card .blog-title a:hover {
+    color: #4a6bce;
+}
+
+/* Page Transition Animation */
+.blog-card {
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(74, 107, 206, 0.15);
+}
+
+/* Loading Animation */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.page-exit {
+    animation: fadeOut 0.3s ease forwards;
+}
+
+body.page-exit {
+    opacity: 0;
+}

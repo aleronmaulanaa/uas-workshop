@@ -1,0 +1,752 @@
+    /* Reset and Base Styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    
+    body {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        color: #333;
+        line-height: 1.6;
+        min-height: 100vh;
+    }
+    
+    a {
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.3s ease;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    @keyframes slideInUp {
+        from {
+            transform: translateY(30px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideInLeft {
+        from {
+            transform: translateX(-30px);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideInRight {
+        from {
+            transform: translateX(30px);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+    
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+        40% { transform: translateY(-10px); }
+        60% { transform: translateY(-5px); }
+    }
+    
+    @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+    }
+    
+    @keyframes rotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+    
+    @keyframes timerPulse {
+        0% { background-color: #dc3545; }
+        50% { background-color: #e74c3c; }
+        100% { background-color: #dc3545; }
+    }
+    
+    /* Header */
+    header {
+        background-color: #fff;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        animation: fadeIn 0.5s ease;
+    }
+    
+    .header-content {
+        display: flex;
+        align-items: center;
+        padding: 20px 0;
+    }
+    
+    .logo {
+        display: flex;
+        align-items: center;
+        transition: all 0.3s ease;
+    }
+    
+    .logo:hover {
+        transform: scale(1.05);
+    }
+    
+    .logo-g {
+        color: #0066cc;
+        font-size: 28px;
+        font-weight: bold;
+        margin-right: 8px;
+    }
+    
+    .logo-text {
+        font-size: 20px;
+        font-weight: bold;
+        color: #333;
+    }
+    
+    /* Main Content */
+    .main-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        margin: 40px 0;
+        min-height: calc(100vh - 200px);
+        align-items: center;
+        animation: fadeIn 0.8s ease;
+    }
+    
+    /* Left Section */
+    .left-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        animation: slideInLeft 0.8s ease;
+    }
+    
+    .illustration {
+        position: relative;
+        margin-bottom: 40px;
+        animation: float 6s ease-in-out infinite;
+    }
+    
+    .illustration-main {
+        width: 300px;
+        height: 300px;
+        background: linear-gradient(135deg, #ff6b6b, #ffa502, #26de81);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    
+    .person {
+        width: 120px;
+        height: 120px;
+        background: linear-gradient(135deg, #74b9ff, #0984e3);
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .person::before {
+        content: '👤';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 40px;
+    }
+    
+    .paper-plane {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        width: 60px;
+        height: 40px;
+        background: linear-gradient(135deg, #fd79a8, #e84393);
+        clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+        animation: bounce 2s infinite;
+        z-index: 3;
+    }
+    
+    .decorative-elements {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .star {
+        position: absolute;
+        color: #ffd700;
+        font-size: 20px;
+        animation: pulse 2s infinite;
+    }
+    
+    .star:nth-child(1) {
+        top: 10%;
+        left: 20%;
+        animation-delay: 0s;
+    }
+    
+    .star:nth-child(2) {
+        top: 70%;
+        right: 15%;
+        animation-delay: 1s;
+    }
+    
+    .star:nth-child(3) {
+        bottom: 20%;
+        left: 10%;
+        animation-delay: 2s;
+    }
+    
+    .leaves {
+        position: absolute;
+        bottom: 10px;
+        left: 20px;
+        font-size: 30px;
+        color: #00b894;
+        animation: float 4s ease-in-out infinite;
+    }
+    
+    /* Timer Section */
+    .timer-section {
+        margin-bottom: 30px;
+    }
+    
+    .timer-label {
+        font-size: 18px;
+        color: #6c757d;
+        margin-bottom: 15px;
+        font-weight: 500;
+    }
+    
+    .countdown-timer {
+        background: linear-gradient(135deg, #dc3545, #c82333);
+        color: white;
+        padding: 15px 30px;
+        border-radius: 25px;
+        font-size: 24px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        box-shadow: 0 8px 20px rgba(220,53,69,0.3);
+        animation: timerPulse 2s infinite;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .timer-icon {
+        font-size: 20px;
+        animation: rotate 2s linear infinite;
+    }
+    
+    .deadline-info {
+        margin-top: 20px;
+    }
+    
+    .deadline-label {
+        font-size: 14px;
+        color: #6c757d;
+        margin-bottom: 5px;
+    }
+    
+    .deadline-time {
+        font-size: 16px;
+        font-weight: 600;
+        color: #212529;
+    }
+    
+    /* Right Section */
+    .right-section {
+        background-color: #fff;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        animation: slideInRight 0.8s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .right-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #0066cc, #74b9ff);
+    }
+    
+    /* Payment Method */
+    .payment-method {
+        margin-bottom: 30px;
+    }
+    
+    .method-label {
+        font-size: 14px;
+        color: #6c757d;
+        margin-bottom: 10px;
+    }
+    
+    .method-info {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .qris-logo {
+        width: 60px;
+        height: 40px;
+        background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 12px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .method-name {
+        font-size: 20px;
+        font-weight: 700;
+        color: #212529;
+    }
+    
+    /* QR Code Section */
+    .qr-section {
+        margin-bottom: 30px;
+    }
+    
+    .qr-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    
+    .qr-label {
+        font-size: 16px;
+        color: #495057;
+        font-weight: 500;
+    }
+    
+    .download-qr {
+        color: #0066cc;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: underline;
+    }
+    
+    .download-qr:hover {
+        color: #0055aa;
+        transform: translateY(-1px);
+    }
+    
+    .qr-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+    
+    .qr-code {
+        width: 200px;
+        height: 200px;
+        background-color: #fff;
+        border: 8px solid #f8f9fa;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .qr-code:hover {
+        transform: scale(1.05);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    }
+    
+    .qr-code img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .qr-placeholder {
+        width: 160px;
+        height: 160px;
+        background: 
+            repeating-linear-gradient(0deg, #000, #000 3px, transparent 3px, transparent 6px),
+            repeating-linear-gradient(90deg, #000, #000 3px, transparent 3px, transparent 6px);
+        background-size: 20px 20px;
+        position: relative;
+    }
+    
+    .qr-placeholder::after {
+        content: 'QR';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 10px;
+        font-weight: bold;
+        border-radius: 4px;
+    }
+    
+    /* Payment Amount */
+    .payment-amount {
+        margin-bottom: 30px;
+    }
+    
+    .amount-label {
+        font-size: 14px;
+        color: #6c757d;
+        margin-bottom: 8px;
+    }
+    
+    .amount-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #f8f9fa;
+        padding: 15px 20px;
+        border-radius: 10px;
+        border: 1px solid #e9ecef;
+    }
+    
+    .amount-value {
+        font-size: 24px;
+        font-weight: 700;
+        color: #0066cc;
+    }
+    
+    .copy-btn {
+        background-color: #0066cc;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .copy-btn:hover {
+        background-color: #0055aa;
+        transform: translateY(-2px);
+    }
+    
+    /* Action Buttons */
+    .action-buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+    
+    .action-btn {
+        padding: 15px 20px;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+    
+    .shop-again-btn {
+        background: linear-gradient(135deg, #0066cc, #0055aa);
+        color: white;
+        box-shadow: 0 4px 15px rgba(0,102,204,0.3);
+    }
+    
+    .shop-again-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0,102,204,0.4);
+    }
+    
+    .check-status-btn {
+        background-color: #f8f9fa;
+        color: #495057;
+        border: 1px solid #dee2e6;
+    }
+    
+    .check-status-btn:hover {
+        background-color: #e9ecef;
+        transform: translateY(-3px);
+    }
+    
+    /* Payment Instructions */
+    .payment-instructions {
+        border-top: 1px solid #e9ecef;
+        padding-top: 25px;
+    }
+    
+    .instructions-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #212529;
+        margin-bottom: 15px;
+    }
+    
+    .instruction-item {
+        border: 1px solid #e9ecef;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+    
+    .instruction-item:hover {
+        border-color: #0066cc;
+        box-shadow: 0 2px 8px rgba(0,102,204,0.1);
+    }
+    
+    .instruction-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        background-color: #f8f9fa;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .instruction-header:hover {
+        background-color: #e9ecef;
+    }
+    
+    .instruction-header.active {
+        background-color: #e3f2fd;
+        color: #0066cc;
+    }
+    
+    .instruction-title {
+        font-size: 16px;
+        font-weight: 600;
+    }
+    
+    .instruction-icon {
+        transition: all 0.3s ease;
+    }
+    
+    .instruction-header.active .instruction-icon {
+        transform: rotate(180deg);
+    }
+    
+    .instruction-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        background-color: #fff;
+    }
+    
+    .instruction-content.active {
+        max-height: 300px;
+        padding: 20px;
+    }
+    
+    .instruction-steps {
+        list-style: none;
+        counter-reset: step-counter;
+    }
+    
+    .instruction-steps li {
+        counter-increment: step-counter;
+        margin-bottom: 15px;
+        padding-left: 40px;
+        position: relative;
+        line-height: 1.6;
+        color: #495057;
+    }
+    
+    .instruction-steps li::before {
+        content: counter(step-counter);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 25px;
+        height: 25px;
+        background-color: #0066cc;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 600;
+    }
+    
+    /* Chat Widget */
+    .chat-widget {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #0066cc, #0055aa);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0,102,204,0.3);
+        transition: all 0.3s ease;
+        z-index: 1000;
+        animation: pulse 3s infinite;
+    }
+    
+    .chat-widget:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(0,102,204,0.4);
+    }
+    
+    .chat-widget i {
+        color: white;
+        font-size: 24px;
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+        .main-content {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        
+        .illustration-main {
+            width: 250px;
+            height: 250px;
+        }
+        
+        .right-section {
+            padding: 30px;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .container {
+            padding: 0 10px;
+        }
+        
+        .right-section {
+            padding: 25px;
+        }
+        
+        .action-buttons {
+            grid-template-columns: 1fr;
+        }
+        
+        .qr-code {
+            width: 180px;
+            height: 180px;
+        }
+        
+        .amount-container {
+            flex-direction: column;
+            gap: 15px;
+            text-align: center;
+        }
+        
+        .illustration-main {
+            width: 200px;
+            height: 200px;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .header-content {
+            padding: 15px 0;
+        }
+        
+        .logo-g {
+            font-size: 24px;
+        }
+        
+        .logo-text {
+            font-size: 18px;
+        }
+        
+        .main-content {
+            margin: 20px 0;
+        }
+        
+        .countdown-timer {
+            font-size: 20px;
+            padding: 12px 25px;
+        }
+        
+        .chat-widget {
+            width: 50px;
+            height: 50px;
+            bottom: 15px;
+            right: 15px;
+        }
+        
+        .chat-widget i {
+            font-size: 20px;
+        }
+    }
+    
+    /* Success Animation */
+    @keyframes successPulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+    }
+    
+    .success-animation {
+        animation: successPulse 0.6s ease;
+    }
+    
+    /* Loading Animation */
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    
+    .loading {
+        animation: spin 1s linear infinite;
+    }
