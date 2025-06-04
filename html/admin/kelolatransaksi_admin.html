@@ -1,0 +1,3245 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kelola Transaksi - Admin BooKu.id</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+    background-color: #fafbfc;
+    color: #1a1d29;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+@keyframes shimmer {
+    0% { background-position: -200px 0; }
+    100% { background-position: calc(200px + 100%) 0; }
+}
+
+@keyframes countUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Admin Sidebar */
+.admin-sidebar {
+    width: 280px;
+    background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+    border-right: 1px solid #e8ecef;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow-y: auto;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+    animation: slideInLeft 0.6s ease;
+}
+
+.sidebar-header {
+    padding: 32px 24px;
+    border-bottom: 1px solid #f1f3f4;
+}
+
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-container {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+}
+
+.logo-g {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a1d29;
+    letter-spacing: -0.02em;
+}
+
+.admin-badge {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-size: 10px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    margin-left: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.sidebar-menu {
+    padding: 24px 0;
+}
+
+.menu-section {
+    margin-bottom: 32px;
+}
+
+.menu-title {
+    font-size: 11px;
+    color: #6b7280;
+    padding: 0 24px 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.menu-list {
+    list-style: none;
+    padding: 0 16px;
+}
+
+.menu-item {
+    margin-bottom: 4px;
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    color: #6b7280;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 10px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.menu-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 10px;
+}
+
+.menu-link:hover {
+    color: #1a1d29;
+    background-color: #f8f9fa;
+    transform: translateX(2px);
+}
+
+.menu-link.active {
+    color: #ffffff;
+    background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+}
+
+.menu-link.active::before {
+    opacity: 1;
+}
+
+.menu-icon {
+    margin-right: 12px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.menu-text {
+    position: relative;
+    z-index: 1;
+}
+
+.sidebar-footer {
+    padding: 24px;
+    border-top: 1px solid #f1f3f4;
+    margin-top: auto;
+}
+
+.admin-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.admin-profile:hover {
+    background-color: #f1f3f4;
+}
+
+.admin-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 2px solid #e8ecef;
+}
+
+.admin-info {
+    flex: 1;
+}
+
+.admin-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1d29;
+    margin-bottom: 2px;
+}
+
+.admin-role {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.admin-dropdown {
+    color: #9ca3af;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.admin-profile:hover .admin-dropdown {
+    color: #6b7280;
+    transform: rotate(180deg);
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    margin-left: 280px;
+    padding: 32px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: fadeIn 0.6s ease;
+    background-color: #fafbfc;
+}
+
+/* Top Bar */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #f1f3f4;
+}
+
+.page-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1a1d29;
+    letter-spacing: -0.02em;
+}
+
+.page-subtitle {
+    font-size: 14px;
+    color: #6b7280;
+    font-weight: 400;
+}
+
+.top-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.notification-btn {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    background-color: #ffffff;
+    border: 1px solid #e8ecef;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6b7280;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.notification-btn:hover {
+    color: #0066cc;
+    border-color: #0066cc;
+    background-color: #f8faff;
+}
+
+.notification-badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    font-size: 10px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    border: 2px solid #ffffff;
+}
+
+.user-dropdown {
+    position: relative;
+}
+
+.user-dropdown-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: #ffffff;
+    border: 1px solid #e8ecef;
+    border-radius: 12px;
+    padding: 8px 16px 8px 8px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.user-dropdown-btn:hover {
+    border-color: #0066cc;
+    background-color: #f8faff;
+}
+
+.dropdown-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.dropdown-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.dropdown-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1d29;
+    line-height: 1.2;
+}
+
+.dropdown-role {
+    font-size: 12px;
+    color: #6b7280;
+    line-height: 1.2;
+}
+
+.dropdown-icon {
+    color: #9ca3af;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.user-dropdown-btn:hover .dropdown-icon {
+    transform: rotate(180deg);
+    color: #6b7280;
+}
+
+/* Content Card */
+.content-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f1f3f4;
+    padding: 32px;
+    margin-bottom: 24px;
+    animation: slideInUp 0.6s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.content-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 32px;
+}
+
+.card-title-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.card-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a1d29;
+    letter-spacing: -0.01em;
+}
+
+.card-subtitle {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.card-actions {
+    display: flex;
+    gap: 12px;
+}
+
+/* Button Styles */
+.btn {
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 102, 204, 0.4);
+}
+
+.btn-outline {
+    background-color: #ffffff;
+    border: 1px solid #e8ecef;
+    color: #6b7280;
+}
+
+.btn-outline:hover {
+    border-color: #0066cc;
+    color: #0066cc;
+    background-color: #f8faff;
+    transform: translateY(-1px);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.btn-danger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 12px;
+}
+
+.btn-icon {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+/* Stats Cards */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.stat-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f1f3f4;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: slideInUp 0.6s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.stat-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 100%);
+}
+
+.icon-blue {
+    background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+}
+
+.icon-green {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.icon-orange {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+.icon-purple {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+}
+
+.icon-red {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+.icon-indigo {
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+}
+
+.icon-teal {
+    background: linear-gradient(135deg, #14b8a6 0%, #0f766e 100%);
+}
+
+.stat-info {
+    flex: 1;
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1a1d29;
+    margin-bottom: 4px;
+    letter-spacing: -0.02em;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.stat-change {
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.stat-change.positive {
+    color: #10b981;
+}
+
+.stat-change.negative {
+    color: #ef4444;
+}
+
+/* Filter Section */
+.filter-section {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.search-box {
+    flex: 1;
+    min-width: 300px;
+    position: relative;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 16px 12px 44px;
+    border: 1px solid #e8ecef;
+    border-radius: 12px;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: #ffffff;
+}
+
+.search-input:focus {
+    border-color: #0066cc;
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+    background-color: #f8faff;
+}
+
+.search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af;
+    font-size: 16px;
+}
+
+.filter-dropdown {
+    position: relative;
+}
+
+.filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background-color: #ffffff;
+    border: 1px solid #e8ecef;
+    border-radius: 12px;
+    font-size: 14px;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 500;
+}
+
+.filter-btn:hover {
+    border-color: #0066cc;
+    color: #0066cc;
+    background-color: #f8faff;
+}
+
+/* Table Styles */
+.table-container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #f1f3f4;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th,
+.data-table td {
+    padding: 16px 20px;
+    text-align: left;
+    border-bottom: 1px solid #f1f3f4;
+}
+
+.data-table th {
+    font-weight: 600;
+    color: #374151;
+    background-color: #f9fafb;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.data-table tbody tr {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.data-table tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+.data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.table-checkbox {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 2px solid #d1d5db;
+    transition: all 0.3s ease;
+}
+
+.table-checkbox:checked {
+    background-color: #0066cc;
+    border-color: #0066cc;
+}
+
+.transaction-id {
+    font-family: 'Monaco', 'Menlo', monospace;
+    font-size: 12px;
+    color: #6b7280;
+    background-color: #f3f4f6;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+.customer-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.customer-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 2px solid #e8ecef;
+    background-color: #f8f9fa;
+}
+
+.customer-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.customer-name {
+    font-weight: 500;
+    color: #1a1d29;
+    font-size: 14px;
+}
+
+.customer-email {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.product-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-width: 250px;
+}
+
+.product-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 0;
+}
+
+.product-image {
+    width: 24px;
+    height: 32px;
+    border-radius: 4px;
+    object-fit: cover;
+    border: 1px solid #e8ecef;
+}
+
+.product-name {
+    font-size: 12px;
+    color: #374151;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.product-qty {
+    font-size: 11px;
+    color: #6b7280;
+    background-color: #f3f4f6;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.more-products {
+    font-size: 11px;
+    color: #0066cc;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.more-products:hover {
+    text-decoration: underline;
+}
+
+.transaction-amount {
+    font-weight: 600;
+    color: #1a1d29;
+    font-size: 16px;
+}
+
+.amount-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.subtotal {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.payment-method {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.payment-credit {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.payment-debit {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.payment-ewallet {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.payment-bank {
+    background-color: #e9d5ff;
+    color: #7c2d12;
+}
+
+.payment-cod {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.transaction-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-completed {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.status-pending {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.status-processing {
+    background-color: #e0f2fe;
+    color: #0369a1;
+}
+
+.status-cancelled {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.status-refunded {
+    background-color: #f3f4f6;
+    color: #374151;
+}
+
+.status-failed {
+    background-color: #fecaca;
+    color: #dc2626;
+}
+
+.transaction-date {
+    font-size: 14px;
+    color: #6b7280;
+    font-weight: 400;
+}
+
+.date-time {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.date-main {
+    font-size: 14px;
+    color: #374151;
+}
+
+.date-time-detail {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.table-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.action-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6b7280;
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 14px;
+}
+
+.action-btn:hover {
+    transform: translateY(-1px);
+}
+
+.view-btn:hover {
+    background-color: #dcfce7;
+    color: #16a34a;
+    border-color: #22c55e;
+}
+
+.edit-btn:hover {
+    background-color: #dbeafe;
+    color: #1e40af;
+    border-color: #3b82f6;
+}
+
+.refund-btn:hover {
+    background-color: #fef3c7;
+    color: #d97706;
+    border-color: #f59e0b;
+}
+
+.print-btn:hover {
+    background-color: #e9d5ff;
+    color: #7c3aed;
+    border-color: #8b5cf6;
+}
+
+/* Pagination */
+.pagination-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid #f1f3f4;
+}
+
+.page-info {
+    font-size: 14px;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.pagination {
+    display: flex;
+    gap: 8px;
+}
+
+.page-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    color: #6b7280;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.page-btn:hover {
+    border-color: #0066cc;
+    color: #0066cc;
+    background-color: #f8faff;
+}
+
+.page-btn.active {
+    background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+    color: white;
+    border-color: #0066cc;
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+}
+
+.page-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.page-btn.disabled:hover {
+    border-color: #e5e7eb;
+    color: #6b7280;
+    background-color: #ffffff;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1050;
+    animation: fadeIn 0.3s ease;
+    display: none;
+}
+
+.modal {
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideInUp 0.3s ease;
+    border: 1px solid #f1f3f4;
+}
+
+.modal-header {
+    padding: 24px 24px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a1d29;
+    letter-spacing: -0.01em;
+}
+
+.modal-close {
+    width: 40px;
+    height: 40px;
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-close:hover {
+    color: #ef4444;
+    background-color: #fee2e2;
+    border-color: #fecaca;
+    transform: rotate(90deg);
+}
+
+.modal-body {
+    padding: 24px;
+}
+
+.modal-footer {
+    padding: 0 24px 24px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+/* Transaction Detail Modal */
+.transaction-detail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.detail-section {
+    background-color: #f9fafb;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.detail-section h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1d29;
+    margin-bottom: 16px;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    font-size: 14px;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.detail-value {
+    font-size: 14px;
+    color: #1a1d29;
+    font-weight: 500;
+}
+
+.product-detail-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.product-detail-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+}
+
+.product-detail-image {
+    width: 48px;
+    height: 64px;
+    border-radius: 6px;
+    object-fit: cover;
+    border: 1px solid #e5e7eb;
+}
+
+.product-detail-info {
+    flex: 1;
+}
+
+.product-detail-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1a1d29;
+    margin-bottom: 4px;
+}
+
+.product-detail-price {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.product-detail-qty {
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+}
+
+/* Status Timeline */
+.status-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.timeline-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+}
+
+.timeline-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: 32px;
+    width: 2px;
+    height: 24px;
+    background-color: #e5e7eb;
+}
+
+.timeline-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: white;
+    background-color: #10b981;
+    z-index: 1;
+}
+
+.timeline-icon.pending {
+    background-color: #f59e0b;
+}
+
+.timeline-icon.cancelled {
+    background-color: #ef4444;
+}
+
+.timeline-content {
+    flex: 1;
+}
+
+.timeline-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1a1d29;
+}
+
+.timeline-time {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .admin-sidebar {
+        width: 80px;
+    }
+    
+    .main-content {
+        margin-left: 80px;
+    }
+    
+    .logo-text, .menu-text, .admin-info, .menu-title {
+        display: none;
+    }
+    
+    .menu-link {
+        justify-content: center;
+        padding: 16px;
+    }
+    
+    .menu-icon {
+        margin-right: 0;
+    }
+    
+    .admin-profile {
+        padding: 12px;
+        justify-content: center;
+    }
+    
+    .admin-dropdown {
+        display: none;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .transaction-detail {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+        padding: 20px;
+    }
+    
+    .admin-sidebar {
+        transform: translateX(-100%);
+    }
+    
+    .admin-sidebar.mobile-open {
+        transform: translateX(0);
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .filter-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-box {
+        min-width: auto;
+    }
+    
+    .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    
+    .top-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    
+    .card-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+    
+    .data-table th, .data-table td {
+        padding: 12px 16px;
+    }
+    
+    .customer-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .customer-avatar {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .product-list {
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 576px) {
+    .main-content {
+        padding: 16px;
+    }
+    
+    .content-card {
+        padding: 20px;
+    }
+    
+    .page-title {
+        font-size: 24px;
+    }
+    
+    .pagination-section {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+    }
+    
+    .pagination {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .modal {
+        margin: 16px;
+        max-width: calc(100% - 32px);
+    }
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 1001;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-menu-toggle:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: flex;
+    }
+}
+
+/* Notification */
+.notification {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    padding: 16px 20px;
+    border-radius: 12px;
+    z-index: 10000;
+    animation: slideInRight 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.notification.error {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    box-shadow: 0 8px 25px rgba(239, 68, 68, 0.3);
+}
+
+.notification.info {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Tooltip */
+.tooltip {
+    position: relative;
+}
+
+.tooltip:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #1f2937;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    z-index: 1000;
+    margin-bottom: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.tooltip:hover::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: #1f2937 transparent transparent transparent;
+    z-index: 1000;
+    margin-bottom: 2px;
+}
+
+/* Revenue Chart */
+.revenue-chart {
+    display: flex;
+    align-items: end;
+    gap: 4px;
+    height: 40px;
+    margin-top: 8px;
+}
+
+.chart-bar {
+    width: 6px;
+    background: linear-gradient(to top, #0066cc, #004499);
+    border-radius: 3px 3px 0 0;
+    transition: all 0.3s ease;
+}
+
+.chart-bar:hover {
+    background: linear-gradient(to top, #0052a3, #003366);
+    transform: scaleY(1.1);
+}
+
+/* Quick Actions */
+.quick-actions {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.quick-action-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background-color: #ffffff;
+    border: 1px solid #e8ecef;
+    border-radius: 10px;
+    font-size: 13px;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 500;
+}
+
+.quick-action-btn:hover {
+    border-color: #0066cc;
+    color: #0066cc;
+    background-color: #f8faff;
+    transform: translateY(-1px);
+}
+
+.quick-action-btn.active {
+    background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+    color: white;
+    border-color: #0066cc;
+}
+</style>
+</head>
+<body>
+<!-- Mobile Menu Toggle -->
+<button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+    <i class="fas fa-bars"></i>
+</button>
+
+<!-- Admin Sidebar -->
+<div class="admin-sidebar" id="adminSidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-logo">
+            <div class="logo-container">
+                <div class="logo-g">B</div>
+            </div>
+            <div class="logo-text">BooKu <span class="admin-badge">Admin</span></div>
+        </div>
+    </div>
+    
+    <div class="sidebar-menu">
+        <div class="menu-section">
+            <div class="menu-title">Main Menu</div>
+            <ul class="menu-list">
+                <li class="menu-item">
+                    <a href="dashboard_admin.html" class="menu-link">
+                        <i class="fas fa-chart-line menu-icon"></i>
+                        <span class="menu-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <i class="fas fa-newspaper menu-icon"></i>
+                        <span class="menu-text">Kelola Artikel</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <i class="fas fa-box menu-icon"></i>
+                        <span class="menu-text">Kelola Produk</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <i class="fas fa-users menu-icon"></i>
+                        <span class="menu-text">Kelola Pengguna</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link active">
+                        <i class="fas fa-receipt menu-icon"></i>
+                        <span class="menu-text">Kelola Transaksi</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="main-content" id="mainContent">
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="page-header">
+            <h1 class="page-title">Kelola Transaksi</h1>
+            <p class="page-subtitle">Kelola dan pantau semua transaksi di platform BooKu</p>
+        </div>
+        
+        <div class="top-actions">
+            <button class="notification-btn">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">12</span>
+            </button>
+            
+            <div class="user-dropdown">
+                <button class="user-dropdown-btn">
+                    <img src="https://i.pinimg.com/736x/98/99/99/989999ff64ec3f65c36095eb5769665e.jpg" alt="Admin" class="dropdown-avatar">
+                    <div class="dropdown-info">
+                        <div class="dropdown-name">Admin BooKu</div>
+                        <div class="dropdown-role">Super Admin</div>
+                    </div>
+                    <i class="fas fa-chevron-down dropdown-icon"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Stats Cards -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon icon-green">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="stat-info">
+                <div class="stat-value">Rp 2.8M</div>
+                <div class="stat-label">Total Penjualan Hari Ini</div>
+                <div class="stat-change positive">
+                    <i class="fas fa-arrow-up"></i>
+                    +18% dari kemarin
+                </div>
+                <div class="revenue-chart">
+                    <div class="chart-bar" style="height: 60%;"></div>
+                    <div class="chart-bar" style="height: 80%;"></div>
+                    <div class="chart-bar" style="height: 45%;"></div>
+                    <div class="chart-bar" style="height: 90%;"></div>
+                    <div class="chart-bar" style="height: 70%;"></div>
+                    <div class="chart-bar" style="height: 100%;"></div>
+                    <div class="chart-bar" style="height: 85%;"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-icon icon-blue">
+                <i class="fas fa-receipt"></i>
+            </div>
+            <div class="stat-info">
+                <div class="stat-value">1,247</div>
+                <div class="stat-label">Total Transaksi</div>
+                <div class="stat-change positive">
+                    <i class="fas fa-arrow-up"></i>
+                    +12% dari bulan lalu
+                </div>
+            </div>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-icon icon-orange">
+                <i class="fas fa-clock"></i>
+            </div>
+            <div class="stat-info">
+                <div class="stat-value">89</div>
+                <div class="stat-label">Transaksi Pending</div>
+                <div class="stat-change negative">
+                    <i class="fas fa-arrow-down"></i>
+                    -5% dari kemarin
+                </div>
+            </div>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-icon icon-purple">
+                <i class="fas fa-credit-card"></i>
+            </div>
+            <div class="stat-info">
+                <div class="stat-value">Rp 2.1K</div>
+                <div class="stat-label">Rata-rata Transaksi</div>
+                <div class="stat-change positive">
+                    <i class="fas fa-arrow-up"></i>
+                    +8% dari bulan lalu
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+        <button class="quick-action-btn active" onclick="filterByStatus('all')">
+            <i class="fas fa-list"></i>
+            Semua Transaksi
+        </button>
+        <button class="quick-action-btn" onclick="filterByStatus('pending')">
+            <i class="fas fa-clock"></i>
+            Pending
+        </button>
+        <button class="quick-action-btn" onclick="filterByStatus('completed')">
+            <i class="fas fa-check-circle"></i>
+            Selesai
+        </button>
+        <button class="quick-action-btn" onclick="filterByStatus('refunded')">
+            <i class="fas fa-undo"></i>
+            Refund
+        </button>
+    </div>
+    
+    <!-- Transactions List -->
+    <div class="content-card">
+        <div class="card-header">
+            <div class="card-title-section">
+                <h2 class="card-title">Daftar Transaksi</h2>
+                <p class="card-subtitle">Kelola semua transaksi yang terjadi di platform BooKu</p>
+            </div>
+            
+            <div class="card-actions">
+                <button class="btn btn-outline" onclick="exportTransactions()">
+                    <i class="fas fa-file-export"></i>
+                    Export
+                </button>
+                <button class="btn btn-primary" onclick="generateReport()">
+                    <i class="fas fa-chart-bar"></i>
+                    Laporan
+                </button>
+            </div>
+        </div>
+        
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="Cari transaksi berdasarkan ID, nama pelanggan, atau produk..." id="searchTransaction">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            
+            <div class="filter-dropdown">
+                <button class="filter-btn">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Metode Pembayaran</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+            
+            <div class="filter-dropdown">
+                <button class="filter-btn">
+                    <i class="fas fa-toggle-on"></i>
+                    <span>Status</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+            
+            <div class="filter-dropdown">
+                <button class="filter-btn">
+                    <i class="fas fa-calendar"></i>
+                    <span>Periode</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Table -->
+        <div class="table-container">
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th width="40">
+                                <input type="checkbox" class="table-checkbox" id="selectAll">
+                            </th>
+                            <th>ID Transaksi</th>
+                            <th>Pelanggan</th>
+                            <th>Produk</th>
+                            <th>Total</th>
+                            <th>Pembayaran</th>
+                            <th>Status</th>
+                            <th>Tanggal</th>
+                            <th width="140">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type="checkbox" class="table-checkbox">
+                            </td>
+                            <td>
+                                <div class="transaction-id">TRX-2025-001247</div>
+                            </td>
+                            <td>
+                                <div class="customer-info">
+                                    <img src="/placeholder.svg?height=40&width=40" alt="Customer" class="customer-avatar">
+                                    <div class="customer-details">
+                                        <div class="customer-name">Andi Wijaya</div>
+                                        <div class="customer-email">andi.wijaya@email.com</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="product-list">
+                                    <div class="product-item">
+                                        <img src="/placeholder.svg?height=32&width=24" alt="Product" class="product-image">
+                                        <div class="product-name">Filosofi Teras</div>
+                                        <div class="product-qty">x2</div>
+                                    </div>
+                                    <div class="product-item">
+                                        <img src="/placeholder.svg?height=32&width=24" alt="Product" class="product-image">
+                                        <div class="product-name">Atomic Habits</div>
+                                        <div class="product-qty">x1</div>
+                                    </div>
+                                    <div class="more-products" onclick="showTransactionDetail('TRX-2025-001247')">+1 produk lainnya</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="amount-breakdown">
+                                    <div class="transaction-amount">Rp 285.000</div>
+                                    <div class="subtotal">Subtotal: Rp 270.000</div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="payment-method payment-credit">
+                                    <i class="fas fa-credit-card"></i> Credit Card
+                                </span>
+                            </td>
+                            <td>
+                                <span class="transaction-status status-completed">
+                                    <i class="fas fa-check-circle"></i> Selesai
+                                </span>
+                            </td>
+                            <td>
+                                <div class="date-time">
+                                    <div class="date-main">04 Jun 2025</div>
+                                    <div class="date-time-detail">14:30 WIB</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table-actions">
+                                    <button class="action-btn view-btn tooltip" data-tooltip="Detail" onclick="showTransactionDetail('TRX-2025-001247')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn edit-btn tooltip" data-tooltip="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn print-btn tooltip" data-tooltip="Print">
+                                        <i class="fas fa-print"></i>
+                                    </button>
+                                    <button class="action-btn refund-btn tooltip" data-tooltip="Refund">
+                                        <i class="fas fa-undo"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" class="table-checkbox">
+                            </td>
+                            <td>
+                                <div class="transaction-id">TRX-2025-001246</div>
+                            </td>
+                            <td>
+                                <div class="customer-info">
+                                    <img src="/placeholder.svg?height=40&width=40" alt="Customer" class="customer-avatar">
+                                    <div class="customer-details">
+                                        <div class="customer-name">Siti Rahayu</div>
+                                        <div class="customer-email">siti.rahayu@email.com</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="product-list">
+                                    <div class="product-item">
+                                        <img src="/placeholder.svg?height=32&width=24" alt="Product" class="product-image">
+                                        <div class="product-name">Sebuah Seni untuk Bersikap Bodo Amat</div>
+                                        <div class="product-qty">x1</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="amount-breakdown">
+                                    <div class="transaction-amount">Rp 89.000</div>
+                                    <div class="subtotal">Subtotal: Rp 85.000</div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="payment-method payment-ewallet">
+                                    <i class="fas fa-mobile-alt"></i> E-Wallet
+                                </span>
+                            </td>
+                            <td>
+                                <span class="transaction-status status-pending">
+                                    <i class="fas fa-clock"></i> Pending
+                                </span>
+                            </td>
+                            <td>
+                                <div class="date-time">
+                                    <div class="date-main">04 Jun 2025</div>
+                                    <div class="date-time-detail">13:45 WIB</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table-actions">
+                                    <button class="action-btn view-btn tooltip" data-tooltip="Detail" onclick="showTransactionDetail('TRX-2025-001246')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn edit-btn tooltip" data-tooltip="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn print-btn tooltip" data-tooltip="Print">
+                                        <i class="fas fa-print"></i>
+                                    </button>
+                                    <button class="action-btn refund-btn tooltip" data-tooltip="Refund">
+                                        <i class="fas fa-undo"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" class="table-checkbox">
+                            </td>
+                            <td>
+                                <div class="transaction-id">TRX-2025-001245</div>
+                            </td>
+                            <td>
+                                <div class="customer-info">
+                                    <img src="/placeholder.svg?height=40&width=40" alt="Customer" class="customer-avatar">
+                                    <div class="customer-details">
+                                        <div class="customer-name">Budi Santoso</div>
+                                        <div class="customer-email">budi.santoso@email.com</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="product-list">
+                                    <div class="product-item">
+                                        <img src="/placeholder.svg?height=32&width=24" alt="Product" class="product-image">
+                                        <div class="product-name">Pulpen Pilot G2</div>
+                                        <div class="product-qty">x5</div>
+                                    </div>
+                                    <div class="product-item">
+                                        <img src="/placeholder.svg?height=32&width=24" alt="Product" class="product-image">
+                                        <div class="product-name">Buku Tulis Campus</div>
+                                        <div class="product-qty">x3</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="amount-breakdown">
+                                    <div class="transaction-amount">Rp 125.000</div>
+                                    <div class="subtotal">Subtotal: Rp 115.000</div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="payment-method payment-bank">
+                                    <i class="fas fa-university"></i> Bank Transfer
+                                </span>
+                            </td>
+                            <td>
+                                <span class="transaction-status status-processing">
+                                    <i class="fas fa-spinner"></i> Diproses
+                                </span>
+                            </td>
+                            <td>
+                                <div class="date-time">
+                                    <div class="date-main">04 Jun 2025</div>
+                                    <div class="date-time-detail">12:20 WIB</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table-actions">
+                                    <button class="action-btn view-btn tooltip" data-tooltip="Detail" onclick="showTransactionDetail('TRX-2025-001245')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn edit-btn tooltip" data-tooltip="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn print-btn tooltip" data-tooltip="Print">
+                                        <i class="fas fa-print"></i>
+                                    </button>
+                                    <button class="action-btn refund-btn tooltip" data-tooltip="Refund">
+                                        <i class="fas fa-undo"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" class="table-checkbox">
+                            </td>
+                            <td>
+                                <div class="transaction-id">TRX-2025-001244</div>
+                            </td>
+                            <td>
+                                <div class="customer-info">
+                                    <img src="/placeholder.svg?height=40&width=40" alt="Customer" class="customer-avatar">
+                                    <div class="customer-details">
+                                        <div class="customer-name">Dewi Lestari</div>
+                                        <div class="customer-email">dewi.lestari@email.com</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="product-list">
+                                    <div class="product-item">
+                                        <img src="/placeholder.svg?height=32&width=24" alt="Product" class="product-image">
+                                        <div class="product-name">Supernova: Kesatria, Putri, dan Bintang Jatuh</div>
+                                        <div class="product-qty">x1</div>
+                                    </div>
+                                    <div class="product-item">
+                                        <img src="/placeholder.svg?height=32&width=24" alt="Product" class="product-image">
+                                        <div class="product-name">Aroma Karsa</div>
+                                        <div class="product-qty">x1</div>
+                                    </div>
+                                    <div class="more-products" onclick="showTransactionDetail('TRX-2025-001244')">+2 produk lainnya</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="amount-breakdown">
+                                    <div class="transaction-amount">Rp 450.000</div>
+                                    <div class="subtotal">Subtotal: Rp 420.000</div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="payment-method payment-credit">
+                                    <i class="fas fa-credit-card"></i> Credit Card
+                                </span>
+                            </td>
+                            <td>
+                                <span class="transaction-status status-completed">
+                                    <i class="fas fa-check-circle"></i> Selesai
+                                </span>
+                            </td>
+                            <td>
+                                <div class="date-time">
+                                    <div class="date-main">03 Jun 2025</div>
+                                    <div class="date-time-detail">16:15 WIB</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table-actions">
+                                    <button class="action-btn view-btn tooltip" data-tooltip="Detail" onclick="showTransactionDetail('TRX-2025-001244')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn edit-btn tooltip" data-tooltip="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn print-btn tooltip" data-tooltip="Print">
+                                        <i class="fas fa-print"></i>
+                                    </button>
+                                    <button class="action-btn refund-btn tooltip" data-tooltip="Refund">
+                                        <i class="fas fa-undo"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" class="table-checkbox">
+                            </td>
+                            <td>
+                                <div class="transaction-id">TRX-2025-001243</div>
+                            </td>
+                            <td>
+                                <div class="customer-info">
+                                    <img src="/placeholder.svg?height=40&width=40" alt="Customer" class="customer-avatar">
+                                    <div class="customer-details">
+                                        <div class="customer-name">Rudi Hartono</div>
+                                        <div class="customer-email">rudi.hartono@email.com</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="product-list">
+                                    <div class="product-item">
+                                        <img src="/placeholder.svg?height=32&width=24" alt="Product" class="product-image">
+                                        <div class="product-name">Puzzle 1000 Pieces</div>
+                                        <div class="product-qty">x1</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="amount-breakdown">
+                                    <div class="transaction-amount">Rp 75.000</div>
+                                    <div class="subtotal">Subtotal: Rp 70.000</div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="payment-method payment-cod">
+                                    <i class="fas fa-truck"></i> COD
+                                </span>
+                            </td>
+                            <td>
+                                <span class="transaction-status status-cancelled">
+                                    <i class="fas fa-times-circle"></i> Dibatalkan
+                                </span>
+                            </td>
+                            <td>
+                                <div class="date-time">
+                                    <div class="date-main">03 Jun 2025</div>
+                                    <div class="date-time-detail">11:30 WIB</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table-actions">
+                                    <button class="action-btn view-btn tooltip" data-tooltip="Detail" onclick="showTransactionDetail('TRX-2025-001243')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn edit-btn tooltip" data-tooltip="Edit" disabled>
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn print-btn tooltip" data-tooltip="Print" disabled>
+                                        <i class="fas fa-print"></i>
+                                    </button>
+                                    <button class="action-btn refund-btn tooltip" data-tooltip="Refund" disabled>
+                                        <i class="fas fa-undo"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" class="table-checkbox">
+                            </td>
+                            <td>
+                                <div class="transaction-id">TRX-2025-001242</div>
+                            </td>
+                            <td>
+                                <div class="customer-info">
+                                    <img src="/placeholder.svg?height=40&width=40" alt="Customer" class="customer-avatar">
+                                    <div class="customer-details">
+                                        <div class="customer-name">Maya Sari</div>
+                                        <div class="customer-email">maya.sari@email.com</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="product-list">
+                                    <div class="product-item">
+                                        <img src="/placeholder.svg?height=32&width=24" alt="Product" class="product-image">
+                                        <div class="product-name">Headphone Sony WH-1000XM4</div>
+                                        <div class="product-qty">x1</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="amount-breakdown">
+                                    <div class="transaction-amount">Rp 4.200.000</div>
+                                    <div class="subtotal">Subtotal: Rp 4.000.000</div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="payment-method payment-debit">
+                                    <i class="fas fa-credit-card"></i> Debit Card
+                                </span>
+                            </td>
+                            <td>
+                                <span class="transaction-status status-refunded">
+                                    <i class="fas fa-undo"></i> Refund
+                                </span>
+                            </td>
+                            <td>
+                                <div class="date-time">
+                                    <div class="date-main">02 Jun 2025</div>
+                                    <div class="date-time-detail">09:45 WIB</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table-actions">
+                                    <button class="action-btn view-btn tooltip" data-tooltip="Detail" onclick="showTransactionDetail('TRX-2025-001242')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn edit-btn tooltip" data-tooltip="Edit" disabled>
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn print-btn tooltip" data-tooltip="Print">
+                                        <i class="fas fa-print"></i>
+                                    </button>
+                                    <button class="action-btn refund-btn tooltip" data-tooltip="Refund" disabled>
+                                        <i class="fas fa-undo"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" class="table-checkbox">
+                            </td>
+                            <td>
+                                <div class="transaction-id">TRX-2025-001241</div>
+                            </td>
+                            <td>
+                                <div class="customer-info">
+                                    <img src="/placeholder.svg?height=40&width=40" alt="Customer" class="customer-avatar">
+                                    <div class="customer-details">
+                                        <div class="customer-name">Arif Rahman</div>
+                                        <div class="customer-email">arif.rahman@email.com</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="product-list">
+                                    <div class="product-item">
+                                        <img src="/placeholder.svg?height=32&width=24" alt="Product" class="product-image">
+                                        <div class="product-name">Sapiens: A Brief History of Humankind</div>
+                                        <div class="product-qty">x1</div>
+                                    </div>
+                                    <div class="product-item">
+                                        <img src="/placeholder.svg?height=32&width=24" alt="Product" class="product-image">
+                                        <div class="product-name">Homo Deus</div>
+                                        <div class="product-qty">x1</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="amount-breakdown">
+                                    <div class="transaction-amount">Rp 320.000</div>
+                                    <div class="subtotal">Subtotal: Rp 300.000</div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="payment-method payment-ewallet">
+                                    <i class="fas fa-mobile-alt"></i> E-Wallet
+                                </span>
+                            </td>
+                            <td>
+                                <span class="transaction-status status-completed">
+                                    <i class="fas fa-check-circle"></i> Selesai
+                                </span>
+                            </td>
+                            <td>
+                                <div class="date-time">
+                                    <div class="date-main">02 Jun 2025</div>
+                                    <div class="date-time-detail">15:20 WIB</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table-actions">
+                                    <button class="action-btn view-btn tooltip" data-tooltip="Detail" onclick="showTransactionDetail('TRX-2025-001241')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn edit-btn tooltip" data-tooltip="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn print-btn tooltip" data-tooltip="Print">
+                                        <i class="fas fa-print"></i>
+                                    </button>
+                                    <button class="action-btn refund-btn tooltip" data-tooltip="Refund">
+                                        <i class="fas fa-undo"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" class="table-checkbox">
+                            </td>
+                            <td>
+                                <div class="transaction-id">TRX-2025-001240</div>
+                            </td>
+                            <td>
+                                <div class="customer-info">
+                                    <img src="/placeholder.svg?height=40&width=40" alt="Customer" class="customer-avatar">
+                                    <div class="customer-details">
+                                        <div class="customer-name">Linda Putri</div>
+                                        <div class="customer-email">linda.putri@email.com</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="product-list">
+                                    <div class="product-item">
+                                        <img src="/placeholder.svg?height=32&width=24" alt="Product" class="product-image">
+                                        <div class="product-name">Agenda Planner 2025</div>
+                                        <div class="product-qty">x2</div>
+                                    </div>
+                                    <div class="product-item">
+                                        <img src="/placeholder.svg?height=32&width=24" alt="Product" class="product-image">
+                                        <div class="product-name">Stabilo Highlighter Set</div>
+                                        <div class="product-qty">x1</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="amount-breakdown">
+                                    <div class="transaction-amount">Rp 180.000</div>
+                                    <div class="subtotal">Subtotal: Rp 165.000</div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="payment-method payment-bank">
+                                    <i class="fas fa-university"></i> Bank Transfer
+                                </span>
+                            </td>
+                            <td>
+                                <span class="transaction-status status-pending">
+                                    <i class="fas fa-clock"></i> Pending
+                                </span>
+                            </td>
+                            <td>
+                                <div class="date-time">
+                                    <div class="date-main">01 Jun 2025</div>
+                                    <div class="date-time-detail">18:45 WIB</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table-actions">
+                                    <button class="action-btn view-btn tooltip" data-tooltip="Detail" onclick="showTransactionDetail('TRX-2025-001240')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn edit-btn tooltip" data-tooltip="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn print-btn tooltip" data-tooltip="Print">
+                                        <i class="fas fa-print"></i>
+                                    </button>
+                                    <button class="action-btn refund-btn tooltip" data-tooltip="Refund">
+                                        <i class="fas fa-undo"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" class="table-checkbox">
+                            </td>
+                            <td>
+                                <div class="transaction-id">TRX-2025-001239</div>
+                            </td>
+                            <td>
+                                <div class="customer-info">
+                                    <img src="/placeholder.svg?height=40&width=40" alt="Customer" class="customer-avatar">
+                                    <div class="customer-details">
+                                        <div class="customer-name">Fajar Nugroho</div>
+                                        <div class="customer-email">fajar.nugroho@email.com</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="product-list">
+                                    <div class="product-item">
+                                        <img src="/placeholder.svg?height=32&width=24" alt="Product" class="product-image">
+                                        <div class="product-name">The Psychology of Money</div>
+                                        <div class="product-qty">x1</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="amount-breakdown">
+                                    <div class="transaction-amount">Rp 95.000</div>
+                                    <div class="subtotal">Subtotal: Rp 90.000</div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="payment-method payment-credit">
+                                    <i class="fas fa-credit-card"></i> Credit Card
+                                </span>
+                            </td>
+                            <td>
+                                <span class="transaction-status status-failed">
+                                    <i class="fas fa-exclamation-triangle"></i> Gagal
+                                </span>
+                            </td>
+                            <td>
+                                <div class="date-time">
+                                    <div class="date-main">01 Jun 2025</div>
+                                    <div class="date-time-detail">10:15 WIB</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table-actions">
+                                    <button class="action-btn view-btn tooltip" data-tooltip="Detail" onclick="showTransactionDetail('TRX-2025-001239')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn edit-btn tooltip" data-tooltip="Edit" disabled>
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn print-btn tooltip" data-tooltip="Print" disabled>
+                                        <i class="fas fa-print"></i>
+                                    </button>
+                                    <button class="action-btn refund-btn tooltip" data-tooltip="Refund" disabled>
+                                        <i class="fas fa-undo"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" class="table-checkbox">
+                            </td>
+                            <td>
+                                <div class="transaction-id">TRX-2025-001238</div>
+                            </td>
+                            <td>
+                                <div class="customer-info">
+                                    <img src="/placeholder.svg?height=40&width=40" alt="Customer" class="customer-avatar">
+                                    <div class="customer-details">
+                                        <div class="customer-name">Indira Sari</div>
+                                        <div class="customer-email">indira.sari@email.com</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="product-list">
+                                    <div class="product-item">
+                                        <img src="/placeholder.svg?height=32&width=24" alt="Product" class="product-image">
+                                        <div class="product-name">Laut Bercerita</div>
+                                        <div class="product-qty">x1</div>
+                                    </div>
+                                    <div class="product-item">
+                                        <img src="/placeholder.svg?height=32&width=24" alt="Product" class="product-image">
+                                        <div class="product-name">Pulang</div>
+                                        <div class="product-qty">x1</div>
+                                    </div>
+                                    <div class="product-item">
+                                        <img src="/placeholder.svg?height=32&width=24" alt="Product" class="product-image">
+                                        <div class="product-name">Cantik Itu Luka</div>
+                                        <div class="product-qty">x1</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="amount-breakdown">
+                                    <div class="transaction-amount">Rp 385.000</div>
+                                    <div class="subtotal">Subtotal: Rp 360.000</div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="payment-method payment-ewallet">
+                                    <i class="fas fa-mobile-alt"></i> E-Wallet
+                                </span>
+                            </td>
+                            <td>
+                                <span class="transaction-status status-completed">
+                                    <i class="fas fa-check-circle"></i> Selesai
+                                </span>
+                            </td>
+                            <td>
+                                <div class="date-time">
+                                    <div class="date-main">31 Mei 2025</div>
+                                    <div class="date-time-detail">14:30 WIB</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table-actions">
+                                    <button class="action-btn view-btn tooltip" data-tooltip="Detail" onclick="showTransactionDetail('TRX-2025-001238')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn edit-btn tooltip" data-tooltip="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn print-btn tooltip" data-tooltip="Print">
+                                        <i class="fas fa-print"></i>
+                                    </button>
+                                    <button class="action-btn refund-btn tooltip" data-tooltip="Refund">
+                                        <i class="fas fa-undo"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Pagination -->
+        <div class="pagination-section">
+            <div class="page-info">
+                Menampilkan 1-10 dari 1,247 transaksi
+            </div>
+            
+            <div class="pagination">
+                <button class="page-btn disabled">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">4</button>
+                <button class="page-btn">5</button>
+                <button class="page-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Transaction Detail Modal -->
+<div class="modal-overlay" id="transactionDetailModal">
+    <div class="modal">
+        <div class="modal-header">
+            <h3 class="modal-title">Detail Transaksi</h3>
+            <button class="modal-close" onclick="closeModal('transactionDetailModal')">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="transaction-detail">
+                <div class="detail-section">
+                    <h4>Informasi Transaksi</h4>
+                    <div class="detail-item">
+                        <span class="detail-label">ID Transaksi</span>
+                        <span class="detail-value" id="detailTransactionId">TRX-2025-001247</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Tanggal</span>
+                        <span class="detail-value" id="detailDate">04 Jun 2025, 14:30 WIB</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Status</span>
+                        <span class="detail-value">
+                            <span class="transaction-status status-completed">
+                                <i class="fas fa-check-circle"></i> Selesai
+                            </span>
+                        </span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Metode Pembayaran</span>
+                        <span class="detail-value">
+                            <span class="payment-method payment-credit">
+                                <i class="fas fa-credit-card"></i> Credit Card
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="detail-section">
+                    <h4>Informasi Pelanggan</h4>
+                    <div class="detail-item">
+                        <span class="detail-label">Nama</span>
+                        <span class="detail-value" id="detailCustomerName">Andi Wijaya</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Email</span>
+                        <span class="detail-value" id="detailCustomerEmail">andi.wijaya@email.com</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Telepon</span>
+                        <span class="detail-value">+62 812-3456-7890</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Alamat</span>
+                        <span class="detail-value">Jl. Sudirman No. 123, Jakarta Pusat</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="detail-section" style="margin-top: 24px;">
+                <h4>Produk yang Dibeli</h4>
+                <div class="product-detail-list">
+                    <div class="product-detail-item">
+                        <img src="/placeholder.svg?height=64&width=48" alt="Product" class="product-detail-image">
+                        <div class="product-detail-info">
+                            <div class="product-detail-name">Filosofi Teras: Filsafat Yunani-Romawi Kuno untuk Mental Tangguh</div>
+                            <div class="product-detail-price">Rp 98.000 x 2</div>
+                        </div>
+                        <div class="product-detail-qty">Rp 196.000</div>
+                    </div>
+                    <div class="product-detail-item">
+                        <img src="/placeholder.svg?height=64&width=48" alt="Product" class="product-detail-image">
+                        <div class="product-detail-info">
+                            <div class="product-detail-name">Atomic Habits: Perubahan Kecil yang Memberikan Hasil Luar Biasa</div>
+                            <div class="product-detail-price">Rp 105.000 x 1</div>
+                        </div>
+                        <div class="product-detail-qty">Rp 105.000</div>
+                    </div>
+                    <div class="product-detail-item">
+                        <img src="/placeholder.svg?height=64&width=48" alt="Product" class="product-detail-image">
+                        <div class="product-detail-info">
+                            <div class="product-detail-name">The 7 Habits of Highly Effective People</div>
+                            <div class="product-detail-price">Rp 89.000 x 1</div>
+                        </div>
+                        <div class="product-detail-qty">Rp 89.000</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="detail-section" style="margin-top: 24px;">
+                <h4>Ringkasan Pembayaran</h4>
+                <div class="detail-item">
+                    <span class="detail-label">Subtotal</span>
+                    <span class="detail-value">Rp 390.000</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Ongkos Kirim</span>
+                    <span class="detail-value">Rp 15.000</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Pajak</span>
+                    <span class="detail-value">Rp 40.500</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Diskon</span>
+                    <span class="detail-value">-Rp 20.000</span>
+                </div>
+                <div class="detail-item" style="border-top: 2px solid #e5e7eb; padding-top: 12px; margin-top: 12px;">
+                    <span class="detail-label" style="font-weight: 600; font-size: 16px;">Total</span>
+                    <span class="detail-value" style="font-weight: 700; font-size: 18px; color: #0066cc;">Rp 425.500</span>
+                </div>
+            </div>
+            
+            <div class="detail-section" style="margin-top: 24px;">
+                <h4>Timeline Status</h4>
+                <div class="status-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Pesanan Dibuat</div>
+                            <div class="timeline-time">04 Jun 2025, 14:30 WIB</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Pembayaran Berhasil</div>
+                            <div class="timeline-time">04 Jun 2025, 14:32 WIB</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Pesanan Diproses</div>
+                            <div class="timeline-time">04 Jun 2025, 15:00 WIB</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Pesanan Dikirim</div>
+                            <div class="timeline-time">05 Jun 2025, 09:00 WIB</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Pesanan Selesai</div>
+                            <div class="timeline-time">06 Jun 2025, 16:45 WIB</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-outline" onclick="closeModal('transactionDetailModal')">Tutup</button>
+            <button class="btn btn-primary" onclick="printInvoice()">
+                <i class="fas fa-print"></i>
+                Print Invoice
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+// Global variables
+let currentPage = 1;
+let totalPages = 125;
+let transactions = [];
+let currentFilter = 'all';
+
+// Initialize page
+document.addEventListener('DOMContentLoaded', function() {
+    // Add loading animation
+    document.body.style.opacity = '0';
+    setTimeout(() => {
+        document.body.style.transition = 'opacity 0.5s ease';
+        document.body.style.opacity = '1';
+    }, 100);
+    
+    // Initialize event listeners
+    initializeEventListeners();
+    
+    // Load transactions
+    loadTransactions();
+    
+    // Animate revenue chart
+    animateRevenueChart();
+    
+    console.log('Admin Transaction Management page initialized');
+});
+
+// Initialize event listeners
+function initializeEventListeners() {
+    // Search functionality
+    document.getElementById('searchTransaction').addEventListener('input', function(e) {
+        const searchTerm = e.target.value.toLowerCase();
+        filterTransactions(searchTerm);
+    });
+    
+    // Select all checkbox
+    document.getElementById('selectAll').addEventListener('change', function() {
+        const checkboxes = document.querySelectorAll('.table-checkbox:not(#selectAll)');
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = this.checked;
+        });
+    });
+    
+    // Mobile menu toggle
+    const mobileToggle = document.querySelector('.mobile-menu-toggle');
+    if (mobileToggle) {
+        mobileToggle.addEventListener('click', toggleMobileMenu);
+    }
+    
+    // Close modal when clicking outside
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('modal-overlay')) {
+            closeModal(e.target.id);
+        }
+    });
+    
+    // Keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+        // Ctrl/Cmd + K to focus search
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+            e.preventDefault();
+            document.getElementById('searchTransaction').focus();
+        }
+        
+        // Escape to close modals
+        if (e.key === 'Escape') {
+            const openModal = document.querySelector('.modal-overlay[style*="flex"]');
+            if (openModal) {
+                closeModal(openModal.id);
+            }
+        }
+    });
+}
+
+// Mobile menu toggle
+function toggleMobileMenu() {
+    const sidebar = document.getElementById('adminSidebar');
+    sidebar.classList.toggle('mobile-open');
+    
+    // Add overlay
+    let overlay = document.querySelector('.mobile-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.className = 'mobile-overlay';
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        `;
+        overlay.addEventListener('click', toggleMobileMenu);
+        document.body.appendChild(overlay);
+    }
+    
+    if (sidebar.classList.contains('mobile-open')) {
+        overlay.style.display = 'block';
+    } else {
+        overlay.style.display = 'none';
+    }
+}
+
+// Load transactions
+function loadTransactions() {
+    // Simulate loading
+    showLoadingState();
+    
+    setTimeout(() => {
+        hideLoadingState();
+        updateStats();
+    }, 1000);
+}
+
+// Show loading state
+function showLoadingState() {
+    const tbody = document.querySelector('.data-table tbody');
+    tbody.innerHTML = '';
+    
+    for (let i = 0; i < 10; i++) {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td><div class="loading-skeleton" style="width: 18px; height: 18px; border-radius: 4px;"></div></td>
+            <td><div class="loading-skeleton" style="width: 120px; height: 20px; border-radius: 6px;"></div></td>
+            <td><div class="loading-skeleton" style="width: 150px; height: 40px; border-radius: 10px;"></div></td>
+            <td><div class="loading-skeleton" style="width: 200px; height: 60px; border-radius: 8px;"></div></td>
+            <td><div class="loading-skeleton" style="width: 100px; height: 32px; border-radius: 8px;"></div></td>
+            <td><div class="loading-skeleton" style="width: 80px; height: 24px; border-radius: 8px;"></div></td>
+            <td><div class="loading-skeleton" style="width: 90px; height: 24px; border-radius: 8px;"></div></td>
+            <td><div class="loading-skeleton" style="width: 80px; height: 32px; border-radius: 8px;"></div></td>
+            <td><div class="loading-skeleton" style="width: 140px; height: 32px; border-radius: 8px;"></div></td>
+        `;
+        tbody.appendChild(row);
+    }
+}
+
+// Hide loading state
+function hideLoadingState() {
+    // This would normally restore the actual table content
+    // For demo purposes, we'll just remove the loading skeletons
+    const skeletons = document.querySelectorAll('.loading-skeleton');
+    skeletons.forEach(skeleton => {
+        skeleton.style.background = 'transparent';
+        skeleton.style.animation = 'none';
+    });
+}
+
+// Update stats
+function updateStats() {
+    // Animate stat values
+    const statValues = document.querySelectorAll('.stat-value');
+    statValues.forEach(stat => {
+        const finalValue = stat.textContent;
+        stat.textContent = '0';
+        
+        let current = 0;
+        let target;
+        
+        if (finalValue.includes('Rp')) {
+            target = parseFloat(finalValue.replace(/[^\d.]/g, ''));
+        } else {
+            target = parseInt(finalValue.replace(/[^\d]/g, ''));
+        }
+        
+        const increment = target / 50;
+        
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                stat.textContent = finalValue;
+                clearInterval(timer);
+            } else {
+                if (finalValue.includes('Rp')) {
+                    if (finalValue.includes('M')) {
+                        stat.textContent = `Rp ${(current).toFixed(1)}M`;
+                    } else if (finalValue.includes('K')) {
+                        stat.textContent = `Rp ${(current).toFixed(1)}K`;
+                    } else {
+                        stat.textContent = `Rp ${Math.floor(current).toLocaleString()}`;
+                    }
+                } else {
+                    stat.textContent = Math.floor(current).toLocaleString();
+                }
+            }
+        }, 20);
+    });
+}
+
+// Animate revenue chart
+function animateRevenueChart() {
+    const chartBars = document.querySelectorAll('.chart-bar');
+    chartBars.forEach((bar, index) => {
+        setTimeout(() => {
+            bar.style.transform = 'scaleY(0)';
+            bar.style.transformOrigin = 'bottom';
+            bar.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            
+            setTimeout(() => {
+                bar.style.transform = 'scaleY(1)';
+            }, 100);
+        }, index * 100);
+    });
+}
+
+// Filter transactions
+function filterTransactions(searchTerm) {
+    const rows = document.querySelectorAll('.data-table tbody tr');
+    let visibleCount = 0;
+    
+    rows.forEach(row => {
+        const transactionId = row.querySelector('.transaction-id')?.textContent.toLowerCase() || '';
+        const customerName = row.querySelector('.customer-name')?.textContent.toLowerCase() || '';
+        const customerEmail = row.querySelector('.customer-email')?.textContent.toLowerCase() || '';
+        const productNames = Array.from(row.querySelectorAll('.product-name')).map(p => p.textContent.toLowerCase()).join(' ');
+        
+        if (transactionId.includes(searchTerm) || 
+            customerName.includes(searchTerm) || 
+            customerEmail.includes(searchTerm) || 
+            productNames.includes(searchTerm)) {
+            row.style.display = '';
+            row.style.animation = 'slideInUp 0.3s ease';
+            visibleCount++;
+        } else {
+            row.style.display = 'none';
+        }
+    });
+    
+    // Update page info
+    const pageInfo = document.querySelector('.page-info');
+    if (searchTerm) {
+        pageInfo.textContent = `Menampilkan ${visibleCount} hasil pencarian`;
+    } else {
+        pageInfo.textContent = 'Menampilkan 1-10 dari 1,247 transaksi';
+    }
+}
+
+// Filter by status
+function filterByStatus(status) {
+    currentFilter = status;
+    
+    // Update active button
+    document.querySelectorAll('.quick-action-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    event.target.classList.add('active');
+    
+    const rows = document.querySelectorAll('.data-table tbody tr');
+    let visibleCount = 0;
+    
+    rows.forEach(row => {
+        const statusElement = row.querySelector('.transaction-status');
+        const statusClass = statusElement ? statusElement.className : '';
+        
+        let shouldShow = false;
+        
+        if (status === 'all') {
+            shouldShow = true;
+        } else if (status === 'pending' && statusClass.includes('status-pending')) {
+            shouldShow = true;
+        } else if (status === 'completed' && statusClass.includes('status-completed')) {
+            shouldShow = true;
+        } else if (status === 'refunded' && statusClass.includes('status-refunded')) {
+            shouldShow = true;
+        }
+        
+        if (shouldShow) {
+            row.style.display = '';
+            row.style.animation = 'slideInUp 0.3s ease';
+            visibleCount++;
+        } else {
+            row.style.display = 'none';
+        }
+    });
+    
+    // Update page info
+    const pageInfo = document.querySelector('.page-info');
+    const statusText = status === 'all' ? 'semua' : status;
+    pageInfo.textContent = `Menampilkan ${visibleCount} transaksi ${statusText}`;
+    
+    showNotification(`Filter ${statusText} diterapkan`, 'info');
+}
+
+// Modal functions
+function showTransactionDetail(transactionId) {
+    const modal = document.getElementById('transactionDetailModal');
+    modal.style.display = 'flex';
+    
+    // Update modal content with transaction data
+    document.getElementById('detailTransactionId').textContent = transactionId;
+    
+    // Simulate loading transaction details
+    setTimeout(() => {
+        showNotification('Detail transaksi dimuat', 'info');
+    }, 300);
+}
+
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.style.display = 'none';
+}
+
+// Transaction functions
+function exportTransactions() {
+    showNotification('Memproses export data transaksi...', 'info');
+    
+    // Simulate export process
+    setTimeout(() => {
+        showNotification('Data transaksi berhasil diexport!', 'success');
+    }, 2000);
+}
+
+function generateReport() {
+    showNotification('Membuat laporan transaksi...', 'info');
+    
+    // Simulate report generation
+    setTimeout(() => {
+        showNotification('Laporan transaksi berhasil dibuat!', 'success');
+    }, 2500);
+}
+
+function printInvoice() {
+    showNotification('Memproses print invoice...', 'info');
+    
+    // Simulate print process
+    setTimeout(() => {
+        showNotification('Invoice berhasil diprint!', 'success');
+        closeModal('transactionDetailModal');
+    }, 1500);
+}
+
+// Notification function
+function showNotification(message, type = 'success') {
+    // Remove existing notifications
+    const existingNotifications = document.querySelectorAll('.notification');
+    existingNotifications.forEach(notification => notification.remove());
+    
+    const notification = document.createElement('div');
+    const icons = {
+        success: 'fa-check-circle',
+        error: 'fa-exclamation-circle',
+        info: 'fa-info-circle'
+    };
+    
+    notification.className = `notification ${type}`;
+    notification.innerHTML = `
+        <i class="fas ${icons[type]}"></i>
+        ${message}
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Auto remove after 4 seconds
+    setTimeout(() => {
+        notification.style.animation = 'slideInRight 0.3s ease reverse';
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
+    }, 4000);
+}
+
+// Pagination functions
+function goToPage(page) {
+    if (page < 1 || page > totalPages) return;
+    
+    currentPage = page;
+    
+    // Update pagination buttons
+    const pageButtons = document.querySelectorAll('.page-btn');
+    pageButtons.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.textContent == page) {
+            btn.classList.add('active');
+        }
+    });
+    
+    // Update disabled states
+    const prevBtn = document.querySelector('.page-btn:first-child');
+    const nextBtn = document.querySelector('.page-btn:last-child');
+    
+    prevBtn.classList.toggle('disabled', currentPage === 1);
+    nextBtn.classList.toggle('disabled', currentPage === totalPages);
+    
+    // Simulate loading new data
+    showLoadingState();
+    setTimeout(() => {
+        hideLoadingState();
+        showNotification(`Halaman ${page} dimuat`, 'info');
+    }, 500);
+}
+
+// Add click handlers for pagination
+document.addEventListener('DOMContentLoaded', function() {
+    const pageButtons = document.querySelectorAll('.page-btn');
+    pageButtons.forEach((btn, index) => {
+        btn.addEventListener('click', function() {
+            if (this.classList.contains('disabled')) return;
+            
+            if (this.querySelector('.fa-chevron-left')) {
+                goToPage(currentPage - 1);
+            } else if (this.querySelector('.fa-chevron-right')) {
+                goToPage(currentPage + 1);
+            } else {
+                const page = parseInt(this.textContent);
+                if (!isNaN(page)) {
+                    goToPage(page);
+                }
+            }
+        });
+    });
+});
+
+// Menu link interactions
+// document.querySelectorAll('.menu-link').forEach(link => {
+//     link.addEventListener('click', function(e) {
+//         e.preventDefault();
+        
+//         // Remove active class from all links
+//         document.querySelectorAll('.menu-link').forEach(l => l.classList.remove('active'));
+        
+//         // Add active class to clicked link
+//         this.classList.add('active');
+        
+//         // Show navigation notification
+//         const menuText = this.querySelector('.menu-text')?.textContent || 'Menu';
+//         if (menuText !== 'Kelola Transaksi') {
+//             showNotification(`Navigasi ke ${menuText}...`, 'info');
+//         }
+//     });
+// });
+
+// Real-time updates simulation
+setInterval(() => {
+    // Simulate new transaction notification
+    const random = Math.random();
+    if (random < 0.1) { // 10% chance every 30 seconds
+        const notificationBtn = document.querySelector('.notification-btn');
+        const badge = notificationBtn.querySelector('.notification-badge');
+        const currentCount = parseInt(badge.textContent);
+        badge.textContent = currentCount + 1;
+        
+        showNotification('Transaksi baru diterima!', 'info');
+    }
+}, 30000);
+
+// Export functions for global access
+window.showTransactionDetail = showTransactionDetail;
+window.closeModal = closeModal;
+window.exportTransactions = exportTransactions;
+window.generateReport = generateReport;
+window.printInvoice = printInvoice;
+window.filterByStatus = filterByStatus;
+window.toggleMobileMenu = toggleMobileMenu;
+</script>
+</body>
+</html>

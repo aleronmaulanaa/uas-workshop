@@ -833,3 +833,12 @@ body {
     transform: translateY(-10px);
     box-shadow: 0 15px 30px rgba(74, 107, 206, 0.15);
 }
+
+      .profile-circle {
+    width: 50px; /* Ukuran lingkaran */
+    height: 50px;
+    border-radius: 50%; /* Membuat bentuk lingkaran */
+    background-size: cover;
+    background-position: center;
+    background-image: url('https://i.pinimg.com/736x/fe/ab/55/feab553adf0eda8ebb5e9ac63407e117.jpg'); /* Ganti dengan URL gambar Anda */
+}
