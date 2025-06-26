@@ -1,4 +1,4 @@
-  /* Reset and Base Styles */
+/* Reset and Base Styles */
       * {
         margin: 0;
         padding: 0;
@@ -1205,9 +1205,26 @@ footer {
     transform: translateY(-2px);
 }
 
-/* Responsive */
-@media (max-width: 576px) {
-    .footer-content {
-        grid-template-columns: 1fr;
-    }
+/* Logout Button */
+.logout-btn {
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px 0;
+  background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.logout-btn:hover {
+  background: linear-gradient(90deg, #dc2626 0%, #b91c1c 100%);
+  transform: translateY(-2px) scale(1.03);
 }

@@ -1403,7 +1403,7 @@ body {
             <!-- Login Link -->
             <div class="login-link-section">
                 <p class="login-text">Sudah punya akun?</p>
-                <a href="login-admin.html" class="login-button">
+                <a href="../index.html" class="login-button">
                     <i class="fas fa-sign-in-alt"></i>
                     <span>Masuk ke Akun</span>
                 </a>
@@ -1419,11 +1419,11 @@ body {
             <!-- Social Register -->
             <div class="social-register">
                 <div class="social-buttons">
-                    <a href="#" class="social-button google" onclick="socialRegister('google')">
+                    <a href="landingpage.html" class="social-button google" onclick="socialRegister('google')">
                         <i class="fab fa-google"></i>
                         <span>Google</span>
                     </a>
-                    <a href="#" class="social-button microsoft" onclick="socialRegister('microsoft')">
+                    <a href="landingpage.html" class="social-button microsoft" onclick="socialRegister('microsoft')">
                         <i class="fab fa-microsoft"></i>
                         <span>Microsoft</span>
                     </a>
@@ -1570,7 +1570,7 @@ function handleRegister(e) {
         
         // Redirect to login or dashboard
         setTimeout(() => {
-            window.location.href = 'login-admin.html';
+            window.location.href = '../index.html';
         }, 2500);
         
         stopLoading();

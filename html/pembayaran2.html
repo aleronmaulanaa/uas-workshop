@@ -339,6 +339,18 @@
 
       // Select voucher
       function selectVoucher(card, code) {
+        // Jika voucher yang sama diklik lagi (toggle off)
+        if (appliedVoucher === code) {
+          // Unselect semua voucher
+          document.querySelectorAll(".voucher-card").forEach((c) => {
+            c.style.borderColor = "#e9ecef";
+            c.style.backgroundColor = "";
+          });
+          appliedVoucher = null;
+          removeVoucherDiscount();
+          return;
+        }
+
         // Remove selection from all vouchers
         document.querySelectorAll(".voucher-card").forEach((c) => {
           c.style.borderColor = "#e9ecef";
@@ -357,6 +369,17 @@
         setTimeout(() => {
           card.style.transform = "scale(1)";
         }, 200);
+      }
+
+      // Fungsi baru untuk menghapus diskon voucher dan mengembalikan harga awal
+      function removeVoucherDiscount() {
+        const voucherRow = document.getElementById("voucherDiscount");
+        const voucherValue = voucherRow.querySelector(".summary-value");
+        const totalElement = document.getElementById("totalAmount");
+
+        voucherRow.style.display = "none";
+        voucherValue.textContent = "-Rp0";
+        totalElement.textContent = `Rp${baseTotal.toLocaleString("id-ID")}`;
       }
 
       // Select voucher by code
