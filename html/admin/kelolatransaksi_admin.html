@@ -1453,10 +1453,10 @@ a {
         gap: 8px;
     }
     
-    .customer-avatar {
+    /* .customer-avatar {
         width: 32px;
         height: 32px;
-    }
+    } */
     
     .product-list {
         max-width: 200px;
@@ -1689,25 +1689,25 @@ a {
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="#" class="menu-link">
+                    <a href="kelolaartikel_admin.html" class="menu-link">
                         <i class="fas fa-newspaper menu-icon"></i>
                         <span class="menu-text">Kelola Artikel</span>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="#" class="menu-link">
+                    <a href="kelolaproduk_admin.html" class="menu-link">
                         <i class="fas fa-box menu-icon"></i>
                         <span class="menu-text">Kelola Produk</span>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="#" class="menu-link">
+                    <a href="kelolapengguna_admin.html" class="menu-link">
                         <i class="fas fa-users menu-icon"></i>
                         <span class="menu-text">Kelola Pengguna</span>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="#" class="menu-link active">
+                    <a href="kelolatransaksi_admin.html" class="menu-link active">
                         <i class="fas fa-receipt menu-icon"></i>
                         <span class="menu-text">Kelola Transaksi</span>
                     </a>
@@ -1732,6 +1732,7 @@ a {
                 <span class="notification-badge">12</span>
             </button>
             
+            <a href="../../index.html">
             <div class="user-dropdown">
                 <button class="user-dropdown-btn">
                     <img src="https://i.pinimg.com/736x/98/99/99/989999ff64ec3f65c36095eb5769665e.jpg" alt="Admin" class="dropdown-avatar">
@@ -1742,6 +1743,7 @@ a {
                     <i class="fas fa-chevron-down dropdown-icon"></i>
                 </button>
             </div>
+            </a>
         </div>
     </div>
     
@@ -2892,13 +2894,124 @@ function toggleMobileMenu() {
 }
 
 // Load transactions
+// function loadTransactions() {
+//     // Simulate loading
+//     showLoadingState();
+    
+//     setTimeout(() => {
+//         hideLoadingState();
+//         updateStats();
+//     }, 1000);
+// }
 function loadTransactions() {
     // Simulate loading
     showLoadingState();
-    
+
     setTimeout(() => {
         hideLoadingState();
-        updateStats();
+
+        // Data transaksi (contoh)
+        const transactions = [
+            {
+                id: "TRX-2025-001247",
+                customer: {
+                    name: "Andi Wijaya",
+                    email: "andi.wijaya@email.com",
+                    avatar: "https://i.pinimg.com/736x/c9/6b/b2/c96bb2c450fac2d0df5e61e917d9fa8b.jpg"
+                },
+                products: [
+                    { name: "Seporsi Mie Ayam Sebelum Mati", qty: 2, image: "https://image.gramedia.net/rs:fit:0:0/plain/https://cdn.gramedia.com/uploads/products/95ob5m98ur.jpg" },
+                    { name: "Filosofi Teras", qty: 1, image: "https://image.gramedia.net/rs:fit:256:0/plain/https://cdn.gramedia.com/uploads/picture_meta/2023/11/27/kjf6cgigkomf6sy9o5qauu.jpg" }
+                ],
+                total: "Rp 285.000",
+                payment: { method: "Credit Card", class: "payment-credit" },
+                status: { text: "Selesai", class: "status-completed" },
+                date: { main: "04 Jun 2025", detail: "14:30 WIB" }
+            },
+            {
+                id: "TRX-2025-001246",
+                customer: {
+                    name: "Siti Rahayu",
+                    email: "siti.rahayu@email.com",
+                    avatar: "https://i.pinimg.com/736x/a0/9a/3a/a09a3a5dd7be73c354591fdc28194f94.jpg"
+                },
+                products: [
+                    { name: "Seporsi Mie Ayam Sebelum Mati", qty: 1, image: "https://image.gramedia.net/rs:fit:0:0/plain/https://cdn.gramedia.com/uploads/products/95ob5m98ur.jpg" }
+                ],
+                total: "Rp 89.000",
+                payment: { method: "E-Wallet", class: "payment-ewallet" },
+                status: { text: "Pending", class: "status-pending" },
+                date: { main: "04 Jun 2025", detail: "13:45 WIB" }
+            }
+            // Tambahkan data transaksi lainnya di sini
+        ];
+
+        const tbody = document.querySelector('.data-table tbody');
+        tbody.innerHTML = ''; // Kosongkan tabel sebelum mengisi
+
+        transactions.forEach(transaction => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td><input type="checkbox" class="table-checkbox"></td>
+                <td><div class="transaction-id">${transaction.id}</div></td>
+                <td>
+                    <div class="customer-info">
+                        <img src="${transaction.customer.avatar}" alt="Customer" class="customer-avatar">
+                        <div class="customer-details">
+                            <div class="customer-name">${transaction.customer.name}</div>
+                            <div class="customer-email">${transaction.customer.email}</div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="product-list">
+                        ${transaction.products.map(product => `
+                            <div class="product-item">
+                                <img src="${product.image}" alt="Product" class="product-image">
+                                <div class="product-name">${product.name}</div>
+                                <div class="product-qty">x${product.qty}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </td>
+                <td>
+                    <div class="transaction-amount">${transaction.total}</div>
+                </td>
+                <td>
+                    <span class="payment-method ${transaction.payment.class}">
+                        <i class="fas fa-credit-card"></i> ${transaction.payment.method}
+                    </span>
+                </td>
+                <td>
+                    <span class="transaction-status ${transaction.status.class}">
+                        <i class="fas fa-check-circle"></i> ${transaction.status.text}
+                    </span>
+                </td>
+                <td>
+                    <div class="date-time">
+                        <div class="date-main">${transaction.date.main}</div>
+                        <div class="date-time-detail">${transaction.date.detail}</div>
+                    </div>
+                </td>
+                <td>
+                    <div class="table-actions">
+                        <button class="action-btn view-btn tooltip" data-tooltip="Detail" onclick="showTransactionDetail('${transaction.id}')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="action-btn edit-btn tooltip" data-tooltip="Edit">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="action-btn print-btn tooltip" data-tooltip="Print">
+                            <i class="fas fa-print"></i>
+                        </button>
+                        <button class="action-btn refund-btn tooltip" data-tooltip="Refund">
+                            <i class="fas fa-undo"></i>
+                        </button>
+                    </div>
+                </td>
+            `;
+            tbody.appendChild(row);
+        });
     }, 1000);
 }
 

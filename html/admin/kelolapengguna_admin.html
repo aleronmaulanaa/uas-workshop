@@ -1555,25 +1555,25 @@ a {
             <div class="menu-title">Main Menu</div>
             <ul class="menu-list">
                 <li class="menu-item">
-                    <a href="#" class="menu-link">
+                    <a href="dashboard_admin.html" class="menu-link">
                         <i class="fas fa-chart-line menu-icon"></i>
                         <span class="menu-text">Dashboard</span>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="#" class="menu-link">
+                    <a href="kelolaartikel_admin.html" class="menu-link">
                         <i class="fas fa-newspaper menu-icon"></i>
                         <span class="menu-text">Kelola Artikel</span>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="#" class="menu-link">
+                    <a href="kelolaproduk_admin.html" class="menu-link">
                         <i class="fas fa-box menu-icon"></i>
                         <span class="menu-text">Kelola Produk</span>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="#" class="menu-link active">
+                    <a href="kelolapengguna_admin.html" class="menu-link active">
                         <i class="fas fa-users menu-icon"></i>
                         <span class="menu-text">Kelola Pengguna</span>
                     </a>
@@ -1604,6 +1604,7 @@ a {
                 <span class="notification-badge">7</span>
             </button>
             
+            <a href="../../index.html">
             <div class="user-dropdown">
                 <button class="user-dropdown-btn">
                     <img src="https://i.pinimg.com/736x/98/99/99/989999ff64ec3f65c36095eb5769665e.jpg" alt="Admin" class="dropdown-avatar">
@@ -1614,6 +1615,7 @@ a {
                     <i class="fas fa-chevron-down dropdown-icon"></i>
                 </button>
             </div>
+            </a>
         </div>
     </div>
     
@@ -1750,7 +1752,7 @@ a {
                             <td>
                                 <input type="checkbox" class="table-checkbox">
                             </td>
-                            <td>
+                            <!-- <td>
                                 <div class="user-info">
                                     <img src="/placeholder.svg?height=48&width=48" alt="User" class="user-avatar">
                                     <div class="user-details">
@@ -1758,7 +1760,7 @@ a {
                                         <div class="user-email">andi.wijaya@email.com</div>
                                     </div>
                                 </div>
-                            </td>
+                            </td> -->
                             <td>
                                 <span class="user-role role-customer">Customer</span>
                             </td>
@@ -2555,13 +2557,178 @@ function toggleMobileMenu() {
 }
 
 // Load users
+// function loadUsers() {
+//     // Simulate loading
+//     showLoadingState();
+    
+//     setTimeout(() => {
+//         hideLoadingState();
+//         updateStats();
+//     }, 1000);
+// }
 function loadUsers() {
     // Simulate loading
     showLoadingState();
-    
+
     setTimeout(() => {
         hideLoadingState();
-        updateStats();
+
+        // Data pengguna (contoh)
+        // const users = [
+        //     {
+        //         name: "Andi Wijaya",
+        //         email: "andi.wijaya@email.com",
+        //         role: "Customer",
+        //         status: "Aktif",
+        //         statusClass: "status-active",
+        //         joined: "15 Jan 2024",
+        //         lastActivity: "2 jam lalu",
+        //         activityStatus: "Online",
+        //         activityClass: "activity-online",
+        //     },
+        //     {
+        //         name: "Siti Rahayu",
+        //         email: "siti.rahayu@email.com",
+        //         role: "Premium",
+        //         status: "Aktif",
+        //         statusClass: "status-active",
+        //         joined: "28 Feb 2024",
+        //         lastActivity: "1 hari lalu",
+        //         activityStatus: "Offline",
+        //         activityClass: "activity-offline",
+        //     },
+        //     // Tambahkan data pengguna lainnya di sini
+        // ];
+        const users = [
+    {
+        name: "Andi Wijaya",
+        email: "andi.wijaya@email.com",
+        role: "Customer",
+        status: "Aktif",
+        statusClass: "status-active",
+        joined: "15 Jan 2024",
+        lastActivity: "2 jam lalu",
+        activityStatus: "Online",
+        activityClass: "activity-online",
+        avatar: "https://i.pinimg.com/736x/c9/6b/b2/c96bb2c450fac2d0df5e61e917d9fa8b.jpg"
+    },
+    {
+        name: "Siti Rahayu",
+        email: "siti.rahayu@email.com",
+        role: "Premium",
+        status: "Aktif",
+        statusClass: "status-active",
+        joined: "28 Feb 2024",
+        lastActivity: "1 hari lalu",
+        activityStatus: "Offline",
+        activityClass: "activity-offline",
+        avatar: "https://i.pinimg.com/736x/a0/9a/3a/a09a3a5dd7be73c354591fdc28194f94.jpg" // ganti sesuai preferensi
+    },
+];
+
+
+        const tbody = document.querySelector('.data-table tbody');
+        tbody.innerHTML = ''; // Kosongkan tabel sebelum mengisi
+
+        // users.forEach((user, index) => {
+        //     const row = document.createElement('tr');
+        //     row.innerHTML = `
+        //         <td><input type="checkbox" class="table-checkbox"></td>
+        //         <td>
+        //             <div class="user-info">
+        //                 <img src="https://i.pinimg.com/736x/a0/9a/3a/a09a3a5dd7be73c354591fdc28194f94.jpg" alt="User" class="user-avatar">
+        //                 <div class="user-details">
+        //                     <div class="user-name">${user.name}</div>
+        //                     <div class="user-email">${user.email}</div>
+        //                 </div>
+        //             </div>
+        //         </td>
+        //         <td>
+        //             <span class="user-role role-${user.role.toLowerCase()}">${user.role}</span>
+        //         </td>
+        //         <td>
+        //             <span class="user-status ${user.statusClass}">
+        //                 <i class="fas fa-check-circle"></i> ${user.status}
+        //             </span>
+        //         </td>
+        //         <td>
+        //             <div class="user-date">${user.joined}</div>
+        //         </td>
+        //         <td>
+        //             <div class="last-activity">
+        //                 <div class="user-date">${user.lastActivity}</div>
+        //                 <div class="activity-status ${user.activityClass}">
+        //                     <span class="activity-indicator"></span>
+        //                     ${user.activityStatus}
+        //                 </div>
+        //             </div>
+        //         </td>
+        //         <td>
+        //             <div class="table-actions">
+        //                 <button class="action-btn view-btn tooltip" data-tooltip="Lihat">
+        //                     <i class="fas fa-eye"></i>
+        //                 </button>
+        //                 <button class="action-btn edit-btn tooltip" data-tooltip="Edit" onclick="openEditUserModal(${index + 1})">
+        //                     <i class="fas fa-edit"></i>
+        //                 </button>
+        //                 <button class="action-btn delete-btn tooltip" data-tooltip="Hapus" onclick="confirmDelete(${index + 1})">
+        //                     <i class="fas fa-trash"></i>
+        //                 </button>
+        //             </div>
+        //         </td>
+        //     `;
+        //     tbody.appendChild(row);
+        // });
+        users.forEach((user, index) => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+        <td><input type="checkbox" class="table-checkbox"></td>
+        <td>
+            <div class="user-info">
+                <img src="${user.avatar}" alt="User" class="user-avatar">
+                <div class="user-details">
+                    <div class="user-name">${user.name}</div>
+                    <div class="user-email">${user.email}</div>
+                </div>
+            </div>
+        </td>
+        <td>
+            <span class="user-role role-${user.role.toLowerCase()}">${user.role}</span>
+        </td>
+        <td>
+            <span class="user-status ${user.statusClass}">
+                <i class="fas fa-check-circle"></i> ${user.status}
+            </span>
+        </td>
+        <td>
+            <div class="user-date">${user.joined}</div>
+        </td>
+        <td>
+            <div class="last-activity">
+                <div class="user-date">${user.lastActivity}</div>
+                <div class="activity-status ${user.activityClass}">
+                    <span class="activity-indicator"></span>
+                    ${user.activityStatus}
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="table-actions">
+                <button class="action-btn view-btn tooltip" data-tooltip="Lihat">
+                    <i class="fas fa-eye"></i>
+                </button>
+                <button class="action-btn edit-btn tooltip" data-tooltip="Edit" onclick="openEditUserModal(${index + 1})">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="action-btn delete-btn tooltip" data-tooltip="Hapus" onclick="confirmDelete(${index + 1})">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        </td>
+    `;
+    tbody.appendChild(row);
+});
+
     }, 1000);
 }
 
